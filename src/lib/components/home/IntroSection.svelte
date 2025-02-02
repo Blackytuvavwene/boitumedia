@@ -1,20 +1,24 @@
-<header class="flex flex-col lg:flex-row flex-auto min-h-[96vh] lg:justify-center lg:items-center">
-    <section class="p-4 mt-6">
-        <h1 class="text-5xl font-bold">
-            Welcome to TuvaTech
+<section class="relative min-h-[80vh] flex items-center justify-center bg-linear-to-b from-secondary-variant to-primary pt-16">
+    <!-- hero content -->
+    <div class="container mx-6 relative text-center text-white">
+        <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight">
+                Transform Your Business:
+            <br>
+            <span class="text-secondary text-stroke-black stroke-4">
+                Go Digital, Go Beyond
+            </span>
         </h1>
-        <br>
-        <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatibus exercitationem et eius sequi eveniet, iusto magnam at. Facilis maiores atque aliquid error iusto beatae, commodi doloribus ducimus sint aliquam recusandae.
+        <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto text-white">
+            Unlock limitless potential with cutting-edge web and mobile solutions. Stay ahead in the digital race and
+          watch your business soar.
         </p>
-        <br>
-        <button class="btn rounded-none border-b-4 border-r-4 border-t-0 border-l-0 border-secondary">
-            Get in touch
-        </button>
-    </section>
-    <section class="bg-base-300 lg:min-h-[96vh] w-full flex-grow">
-        <div>
-            Placeholder
+        <div class="flex flex-col justify-center gap-4 md:gap-0 font-black md:flex-row">
+            <a href="/contact" class="btn btn-base btn-lg text-primary-content md:mr-4 font-black">
+                Start Your Digital Journey
+            </a>
+            <a href="/services" class="btn btn-secondary btn-lg text-secondary-content font-black">
+                See Success Stories
+            </a>
         </div>
-    </section>
-</header>
+    </div>
+</section>
