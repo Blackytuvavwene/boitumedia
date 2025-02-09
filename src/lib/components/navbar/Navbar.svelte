@@ -1,8 +1,12 @@
 <script lang="ts">
-
-	import { page } from '$app/stores';
 	import { socialLinks } from '$lib/utils/links/social.links.js';
     import { createDropdownMenu, melt} from '@melt-ui/svelte';
+    import { Menu, Cross } from 'lucide-svelte'
+
+    let isScrolled = $state(false)
+    let isMenuOpen = $state(false)
+    let scrollHeight = $state(0)
+
 
     // elements from melt ui to use in our dropdown menu
     const { elements : { menu, item, trigger} } = createDropdownMenu()
@@ -55,6 +59,7 @@
                 Media
             </span>
         </a>
+        <p>{isMenuOpen}</p>
         <!-- Desktop menu -->
         <ul class="items-center flex-grow hidden justify-center space-x-8 lg:flex">
             {#each navLinks as navLink}
@@ -65,7 +70,41 @@
             </li>
             {/each}
         </ul>
-        <button class="hidden md:block">
+
+        <!-- Mobile menu button -->
+        <button 
+        type="button"
+        use:melt={$trigger}
+        class="md:hidden btn btn-ghost btn-md text-primary-content" onclick={() => isMenuOpen = !isMenuOpen}>
+            <span class="sr-only">Open main menu</span>
+            {#if isMenuOpen}
+                <Cross />
+            {:else}
+                <Menu />
+            {/if}
+        </button>
+
+        <!-- Mobile Navigation Dropdown -->
+         {#if isMenuOpen}
+          <section 
+          use:melt={$menu}
+          class="md:hidden absolute top-full left-4 right-4 bg-gray-900 bg-opacity-95 rounded-lg shadow-lg overflow-hidden transition-all duration-300 ease-in-out">
+            <ul class="flex flex-col divide-y divide-gray-600">
+              {#each navLinks as navLink}
+                <li class="py-4 px-4">
+                  <a href={navLink.path} use:melt={$item} class="text-white hover:text-blue-400 py-2 transition-colors duration-300">
+                    {navLink.name}
+                  </a>
+                </li>
+              {/each}
+            </ul>
+          </section>
+         {/if}
+         
+
+
+
+        <button class="hidden md:block btn btn-primary btn-md text-primary-content">
             Get a quote
         </button>
     </nav>

@@ -46,6 +46,7 @@
 	"type": "module",
 	"dependencies": {
 		"boitumedia": "file:",
-		"class-variance-authority": "^0.7.1"
+		"class-variance-authority": "^0.7.1",
+		"lucide-svelte": "^0.475.0"
 	}
 }
