@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { socialLinks } from '$lib/utils/links/social.links.js';
     import { createDropdownMenu, melt} from '@melt-ui/svelte';
-    import { Menu, Cross } from 'lucide-svelte'
+    import { Menu, Cross, X } from 'lucide-svelte'
+	import { fly } from 'svelte/transition';
 
     let isScrolled = $state(false)
     let isMenuOpen = $state(false)
@@ -9,7 +10,11 @@
 
 
     // elements from melt ui to use in our dropdown menu
-    const { elements : { menu, item, trigger} } = createDropdownMenu()
+    const { elements : { menu, item, trigger} } = createDropdownMenu({
+        onOutsideClick: () => {
+            isMenuOpen = false
+        }
+    })
 
     // nav links
     let navLinks = [
@@ -47,19 +52,25 @@
         3
     ]
 
+    // control isScrolled state
+    $effect(() => {
+        isScrolled = scrollHeight > 100
+    })
+
     
 </script>
 
-<header class="fixed top-0 w-full  z-50">
+<svelte:window bind:scrollY={scrollHeight}/>
+
+<header class="fixed top-0 w-full z-50 {isScrolled ? "bg-secondary bg-opacity-10" : "bg-transparent"}">
     <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
         <a href="/home" aria-label="Home" class="">
             <span class="text-2xl font-bold text-white">
                 Boitu
             </span><span class="font-bold text-white text-2xl">
-                Media
+                Media 
             </span>
         </a>
-        <p>{isMenuOpen}</p>
         <!-- Desktop menu -->
         <ul class="items-center flex-grow hidden justify-center space-x-8 lg:flex">
             {#each navLinks as navLink}
@@ -75,12 +86,12 @@
         <button 
         type="button"
         use:melt={$trigger}
-        class="md:hidden btn btn-ghost btn-md text-primary-content" onclick={() => isMenuOpen = !isMenuOpen}>
-            <span class="sr-only">Open main menu</span>
+        class="lg:hidden btn-md " onclick={() => isMenuOpen = !isMenuOpen}>
+            <!-- <span class="sr-only">Open main menu</span> -->
             {#if isMenuOpen}
-                <Cross />
+                <X color="white"/>
             {:else}
-                <Menu />
+                <Menu color="white"/>
             {/if}
         </button>
 
@@ -88,23 +99,29 @@
          {#if isMenuOpen}
           <section 
           use:melt={$menu}
-          class="md:hidden absolute top-full left-4 right-4 bg-gray-900 bg-opacity-95 rounded-lg shadow-lg overflow-hidden transition-all duration-300 ease-in-out">
-            <ul class="flex flex-col divide-y divide-gray-600">
+          transition:fly={{y: -50 , duration: 300,}}
+          class="lg:hidden absolute max-w-[98vw] w-full bg-gray-900 bg-opacity-95 rounded-lg shadow-lg flex flex-col gap-2 mt-6">
+            <ul class="flex flex-col divide-y divide-gray-600 px-4">
               {#each navLinks as navLink}
                 <li class="py-4 px-4">
-                  <a href={navLink.path} use:melt={$item} class="text-white hover:text-blue-400 py-2 transition-colors duration-300">
+                  <a href={navLink.path} use:melt={$item} class="text-white hover:text-blue-400 py-2">
                     {navLink.name}
                   </a>
                 </li>
               {/each}
             </ul>
+            <!-- get a quote button -->
+             <a href="#contact" class="btn btn-primary m-4 ">
+                Get a quote
+             </a>
           </section>
+
          {/if}
          
 
 
 
-        <button class="hidden md:block btn btn-primary btn-md text-primary-content">
+        <button class="hidden lg:block btn btn-primary btn-md text-primary-content">
             Get a quote
         </button>
     </nav>

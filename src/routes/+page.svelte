@@ -1,11 +1,9 @@
 <script lang="ts">
-	import IntroSection from '$lib/components/home/IntroSection.svelte';
-	import AboutSection from '$lib/components/home/AboutSection.svelte';
+	import Home from '$lib/components/home/Home.svelte';
 </script>
 
 <svelte:head>
 	<title>Boitumelo Tubabwene</title>
 </svelte:head>
 
-<IntroSection />
-<AboutSection/>
+<Home />
