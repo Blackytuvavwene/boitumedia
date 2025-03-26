@@ -1,58 +1,70 @@
 <script lang="ts">
-	import type { Snippet } from "svelte";
-	import { inview } from "svelte-inview";
+    import type { Snippet } from "svelte";
+    import { inview } from "svelte-inview";
     import type { Options, ObserverEventDetails } from 'svelte-inview';
-	import type { TransitionConfig } from "svelte/transition";
+    import type { TransitionConfig } from "svelte/transition";
+    import { cubicOut, cubicInOut, quintOut, quintIn } from 'svelte/easing';
 
-  
+    // Enhanced easing options
+    const easingOptions = {
+        cubicOut,
+        cubicInOut,
+        quintOut,
+        quintIn
+    };
 
-    // inview status
-    let isInView = $state(false)
-
-    // inview options
-    const options: Options = {
-        rootMargin: '-50px',
-        unobserveOnEnter: true,
-    }
-
-    type AnimateFunction = (node: HTMLElement, params: any) => TransitionConfig;
-
-    interface AnimateObject {
-        (node: HTMLElement, params: any): TransitionConfig;
+    // Animation configuration type
+    interface AnimationConfig {
         duration?: number;
         delay?: number;
-        easing?: (t: number) => number;
+        easing?: keyof typeof easingOptions | ((t: number) => number);
+        [key: string]: any;
     }
-
-    type Animate = AnimateFunction | AnimateObject;
 
     // props
     let { 
         children, 
         animate, 
         threshold = 0.5,
-    } : 
-        { 
-            children : Snippet, 
-            animate : Animate,
-            threshold? : number,
-        } = $props()
+        animationConfig = {}
+    } : { 
+        children: Snippet, 
+        animate: (node: HTMLElement, params: any) => TransitionConfig, 
+        threshold?: number,
+        animationConfig?: AnimationConfig
+    } = $props()
 
-
-    // function to handle inview changes
-    const handleInView = ({detail} : CustomEvent<ObserverEventDetails>) => {
-        isInView = detail.inView
+    // Inview options
+    const options: Options = {
+        rootMargin: '-50px',
+        unobserveOnEnter: true,
     }
 
+    // State to track view and animation
+    let isInView = $state(false);
+    let shouldAnimate = $state(false);
+
+    // Handle inview changes
+    const handleInViewChange = ({detail}: CustomEvent<ObserverEventDetails>) => {
+        isInView = detail.inView;
+        
+        // Only trigger animation when entering view
+        if (detail.inView) {
+            // Add a small delay to ensure scroll has occurred
+            setTimeout(() => {
+                shouldAnimate = true;
+            }, 50);
+        }
+    }
 </script>
 
 <div
     use:inview={options}
-    oninview_change={handleInView}
+    oninview_change={handleInViewChange}
  >
-    {#if isInView}
-    <div transition:animate={animate}>
-        {@render children()}
-    </div>
+    {#if isInView && shouldAnimate}
+        <div transition:animate={animationConfig}>
+            {@render children()}
+        </div>
     {/if}
 </div>

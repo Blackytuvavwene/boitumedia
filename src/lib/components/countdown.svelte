@@ -33,6 +33,9 @@ onMount(() => {
     return () => clearInterval(timer);
 });
 
+// function to add three numbers
+
+
 
 </script>
 

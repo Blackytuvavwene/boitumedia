@@ -1,5 +1,6 @@
 <script lang="ts">
-    import Carousel from '../Carousel.svelte';
+	import Carousel from "$lib/components/Carousel.svelte";
+
 
     const carouselItems = [
         {

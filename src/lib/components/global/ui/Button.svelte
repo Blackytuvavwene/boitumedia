@@ -32,10 +32,10 @@
     },
     )
 
-    let {slot, buttonProps} :{slot : Snippet, buttonProps : HTMLButtonAttributes}  = $props()
+    let {children, buttonProps} :{children : Snippet, buttonProps : HTMLButtonAttributes}  = $props()
 
 </script>
 
 <button {...buttonProps}>
-    <slot></slot>
+    {@render children()}
 </button>
