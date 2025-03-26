@@ -1,34 +1,35 @@
 <script lang="ts">
+	import { AnimateInView } from '$lib/components/global/AnimateInView.svelte';
   import { Globe, Smartphone, Server, Code } from 'lucide-svelte';
   import { fly } from 'svelte/transition';
   import { linear } from 'svelte/easing';
-	import AnimateInView from '$lib/components/global/AnimateInView.svelte';
+	import { HomePageStrings } from '$lib/utils/strings';
 
   // services provided
   const services = [
     {
       icon: Globe,
-      title: 'Web Development',
-      description: 'Custom websites and web applications tailored to your needs.',
-      ariaLabel: "Web Development: Custom websites and web applications tailored to your needs."
+      title: HomePageStrings.services.WEB_DEV.title,
+      description: HomePageStrings.services.WEB_DEV.description,
+      ariaLabel: HomePageStrings.services.WEB_DEV.ariaLabel
     },
     {
       icon: Smartphone,
-      title: 'Mobile App Development',
-      description: 'Native and cross-platform mobile apps for iOS and Android.',
-      ariaLabel: "Mobile App Development: Native and cross-platform mobile apps for iOS and Android."
+      title: HomePageStrings.services.MOBILE_DEV.title,
+      description: HomePageStrings.services.MOBILE_DEV.description,
+      ariaLabel: HomePageStrings.services.MOBILE_DEV.ariaLabel
     },
     {
       icon: Server,
-      title: 'Backend Development',
-      description: 'Robust and scalable server-side solutions and APIs.',
-      ariaLabel: "Backend Development: Robust and scalable server-side solutions and APIs."
+      title: HomePageStrings.services.BACKEND_DEV.title,
+      description: HomePageStrings.services.BACKEND_DEV.description,
+      ariaLabel: HomePageStrings.services.BACKEND_DEV.ariaLabel
     },
     {
       icon: Code,
-      title: 'Frontend Development',
-      description: 'Responsive and interactive user interfaces with modern frameworks.',
-      ariaLabel: "Frontend Development: Responsive and interactive user interfaces with modern frameworks."
+      title: HomePageStrings.services.UI_UX_DESIGN.title,
+      description: HomePageStrings.services.UI_UX_DESIGN.description,
+      ariaLabel: HomePageStrings.services.UI_UX_DESIGN.ariaLabel
     },
   ];
 
@@ -53,7 +54,7 @@
 
 <section class="w-full bg-base-200 flex flex-col items-center m-auto py-10 min-h-92 h-full" aria-labelledby="services-heading">
   <h2 id="services-heading" class="font-black text-2xl">
-    Services We Offer
+    {HomePageStrings.SERVICES_TITLE}
   </h2>
   <ul class="grid md:grid-cols-2 m-16 gap-8 h-full overflow-hidden" aria-label="Our Services">
     {#each services as service, index (service.title)}

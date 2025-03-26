@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { cn } from '$lib/utils/utils';
+
     // import cva
     import { cva, type VariantProps } from 'class-variance-authority';
 	import type { Snippet } from 'svelte';
@@ -32,10 +34,16 @@
     },
     )
 
-    let {children, buttonProps} :{children : Snippet, buttonProps : HTMLButtonAttributes}  = $props()
+    type ButtonVariants = VariantProps<typeof buttonVariants>
+    // define button interface
+    interface ButtonProps extends HTMLButtonAttributes,  ButtonVariants{}
 
+    let {children, class: className, variant, size, ...buttonProps} :{children : Snippet, class?: string, variant?: ButtonVariants['variant'], size?: ButtonVariants['size']}  = $props()
+
+
+    let mergedClass = $derived(cn(buttonVariants({variant, size, class: className})))
 </script>
 
-<button {...buttonProps}>
+<button class={mergedClass} {...buttonProps}>
     {@render children()}
 </button>

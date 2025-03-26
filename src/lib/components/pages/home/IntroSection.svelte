@@ -1,3 +1,8 @@
+<script>
+	import { HomePageStrings } from './../../../utils/strings.ts';
+	import Button from "$lib/components/global/ui/Button.svelte";
+
+</script>
 <section class="relative min-h-[80vh] flex items-center justify-center bg-linear-to-b from-secondary to-blue-900 pt-16">
 
     <!-- geometric shapes -->
@@ -16,15 +21,26 @@
             </span>
         </h1>
         <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto text-white">
-            Unlock limitless potential with cutting-edge web and mobile solutions. Stay ahead in the digital race and
-          watch your business soar.
+            {HomePageStrings.HERO_PARAGRAPH}
         </p>
-        <div class="flex textarea-xs flex-col justify-center gap-4 md:gap-0 md:flex-row">
-            <a href="/contact" class="btn textarea-lg btn-base btn-lg text-primary-content md:mr-4">
+        <div class="flex textarea-xs flex-col justify-center gap-4 md:flex-row">
+          
+            <a href="/contact">
+              <Button
+                size="lg"
+                class="hover:cursor-pointer hover:bg-blue-600 transition-all hover:scale-105 hover:shadow-lg"
+              >
                 Start Your Digital Journey
+              </Button>
             </a>
-            <a href="/services" class="btn btn-primary btn-lg text-secondary-content">
+            <a href="/services" >
+              <Button
+                size="lg"
+                variant="secondary"
+                class="hover:cursor-pointer hover:bg-blue-600 transition-all hover:scale-105 hover:shadow-lg"
+              >
                 See Success Stories
+              </Button>
             </a>
         </div>
     </div>
