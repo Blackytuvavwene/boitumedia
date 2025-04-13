@@ -1,11 +1,11 @@
-<script>
+<script lang="ts">
 	import { onMount } from 'svelte';
 
     // display value state signal
     let displayValue = $state(0)
 
     // props
-    let value = $props()
+    let { value = 0 } = $props<{ value: number }>();
 
     onMount(() => {
         let start = 0;

@@ -44,7 +44,7 @@
   </script>
   
   <section 
-    class="py-20 bg-gray-900"
+    class="py-20 bg-base-900"
     use:inview={{
       rootMargin: '0px 0px -100px 0px',
       unobserveOnEnter: true
@@ -64,7 +64,7 @@
           <div class="space-y-4">
             {#each faqs as faq, index}
               <div 
-                class="bg-gray-800 border border-gray-700 rounded-lg overflow-hidden"
+                class="bg-base-800 border border-base-700 rounded-lg overflow-hidden"
                 in:fly={{ y: 20, duration: 500, delay: index * 100 }}
               >
                 <button 

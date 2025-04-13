@@ -3,6 +3,7 @@
     import { fly } from 'svelte/transition';
     import { inview } from 'svelte-inview';
 	import TimelineStep from './components/TimelineStep.svelte';
+	import CircuitBoardLine from './components/CircuitBoardLine.svelte';
   
     const steps = [
       { title: "Discovery", description: "We analyze your requirements and project goals." },

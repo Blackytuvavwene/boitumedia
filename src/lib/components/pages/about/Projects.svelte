@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { fade, scale } from 'svelte/transition';
+    import { fade, scale, fly } from 'svelte/transition';
     
     const projects = [
       {
@@ -79,15 +79,15 @@
     let selectedProject = null;
   </script>
   
-  <section class="py-20 bg-gray-800">
+  <section class="py-20 bg-primary-100">
     <div class="container mx-auto px-4">
-      <h2 class="text-3xl font-bold text-white text-center mb-12">Our Projects</h2>
+      <h2 class="text-3xl font-bold text-center mb-12">Our Projects</h2>
   
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {#each projects as project, index}
           <div 
             in:fly={{ opacity: 0, y: 20, delay: index * 100, duration: 500 }}
-            class="bg-gray-800 border-gray-700 overflow-hidden cursor-pointer hover:border-blue-500 transition-colors rounded-lg border"
+            class="bg-primary-700 border-gray-700 overflow-hidden cursor-pointer hover:border-blue-500 transition-colors rounded-lg border"
             on:click={() => selectedProject = project}
           >
             <div class="h-48 overflow-hidden">
@@ -98,16 +98,18 @@
               />
             </div>
             <div class="p-6">
-              <h3 class="text-xl font-semibold text-white mb-2">{project.title}</h3>
+              <h3 class="text-xl font-semibold text-primary-50 mb-2">
+                {project.title}
+              </h3>
               <p class="text-gray-300 mb-4">{project.description}</p>
               <div class="flex flex-wrap gap-2">
                 {#each project.tags.slice(0, 3) as tag, index}
-                  <span class="inline-block px-2 py-1 bg-gray-700 text-gray-300 rounded-full text-xs">
+                  <span class="inline-block px-2 py-1 bg-primary-900 text-primary-300 rounded-full text-xs">
                     {tag}
                   </span>
                 {/each}
                 {#if project.tags.length > 3}
-                  <span class="inline-block px-2 py-1 bg-gray-700 text-gray-300 rounded-full text-xs">
+                  <span class="inline-block px-2 py-1 bg-primary-900 text-gray-300 rounded-full text-xs">
                     +{project.tags.length - 3}
                   </span>
                 {/if}

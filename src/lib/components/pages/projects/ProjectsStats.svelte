@@ -28,7 +28,7 @@
         value: 12,
         label: "Years of Experience",
         suffix: "+",
-      },
+      }
     ];
     
     function getIcon(iconName) {

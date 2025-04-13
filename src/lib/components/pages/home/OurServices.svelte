@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { AnimateInView } from '$lib/components/global/AnimateInView.svelte';
   import { Globe, Smartphone, Server, Code } from 'lucide-svelte';
   import { fly } from 'svelte/transition';
   import { linear } from 'svelte/easing';
 	import { HomePageStrings } from '$lib/utils/strings';
+	import AnimateInView from '$lib/components/global/AnimateInView.svelte';
 
   // services provided
   const services = [

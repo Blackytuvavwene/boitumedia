@@ -55,7 +55,7 @@
     });
 </script>
   
-  <section class="py-20 bg-gray-800">
+  <section class="py-20 bg-base-800">
     <div class="container mx-auto px-4 mb-12">
       <h2 class="text-3xl font-bold text-white text-center mb-12">Technologies We Master</h2>
     </div>
@@ -68,7 +68,7 @@
       <div bind:this={scrollerInnerRef} class="scroller-inner flex space-x-12 py-4 w-max">
         {#each technologies as tech}
           <div class="flex flex-col items-center">
-            <div class="w-24 h-24 bg-gray-700 rounded-xl flex items-center justify-center mb-3 p-4">
+            <div class="w-24 h-24 bg-base-700 rounded-xl flex items-center justify-center mb-3 p-4">
               <img
                 src={tech.icon || "/placeholder.svg"}
                 alt={tech.name}

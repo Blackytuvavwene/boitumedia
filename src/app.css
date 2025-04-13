@@ -8,14 +8,61 @@
   default: false;
   prefersdark: false;
   color-scheme: "light";
-  --color-base-100: oklch(100% 0 0);
-  --color-base-200: oklch(98% 0 0);
-  --color-base-300: oklch(95% 0 0);
+  /* Base Colors */
+  --color-base-50: '#FFFFFF';
+  --color-base-100: '#FFFFFF';
+  --color-base-200: '#FEFEFE';
+  --color-base-300: '#FDFDFD';
+  --color-base-400: '#FCFCFC';
+  --color-base-500: '#FBFBFB';
+  --color-base-600: '#E2E2E2';
+  --color-base-700: '#979797';
+  --color-base-800: '#717171';
+  --color-base-900: '#4B4B4B';
   --color-base-content: oklch(21% 0.006 285.885);
+
+
   --color-primary: #16d0cc;
+  /* Primary Colors */
+  --color-primary-50: '#F6FAFC';
+  --color-primary-100: '#EDF5F8';
+  --color-primary-200: '#D1E7EF';
+  --color-primary-300: '#B5D8E5';
+  --color-primary-400: '#7EBBD1';
+  --color-primary-500: '#469EBD';
+  --color-primary-600: '#3F8EAA';
+  --color-primary-700: '#2A5F71';
+  --color-primary-800: '#204755';
+  --color-primary-900: '#152F39';
   --color-primary-content: oklch(12% 0.042 264.695);
+
+  /* Primary Variant Colors */
+  --color-primary-variant-50: '#FBFEFE';
+  --color-primary-variant-100: '#F6FCFC';
+  --color-primary-variant-200: '#E9F8F8';
+  --color-primary-variant-300: '#DCF3F4';
+  --color-primary-variant-400: '#C2EAEB';
+  --color-primary-variant-500: '#A8E1E3';
+  --color-primary-variant-600: '#97CBCC';
+  --color-primary-variant-700: '#658788';
+  --color-primary-variant-800: '#4C6566';
+  --color-primary-variant-900: '#324444';
+
+  /* Secondary Colors */
   --color-secondary: #9671af;
   --color-secondary-content: oklch(13% 0.028 261.692);
+  --color-secondary-50: '#FAF7FB';
+  --color-secondary-100: '#F5F0F8';
+  --color-secondary-200: '#E6D9EC';
+  --color-secondary-300: '#D6C2E1';
+  --color-secondary-400: '#B895CB';
+  --color-secondary-500: '#9967B4';
+  --color-secondary-600: '#8A5DA2';
+  --color-secondary-700: '#5C3E6C';
+  --color-secondary-800: '#452E51';
+  --color-secondary-900: '#2E1F36';
+
+  /* Accent Colors */
   --color-accent: #a07eb6;
   --color-accent-content: oklch(14% 0 0);
   --color-neutral: oklch(14% 0.005 285.823);
@@ -63,11 +110,53 @@
   } */
 }
 
-@theme{
-  --color-primary : #16d0cc;
-  --color-primary-variant: #7bddd6;
-  --color-secondary: #9671af;
-  --color-secondary-variant: #a07eb6;
-  --color-base : #e0eae0;
-}
 
+@theme {
+  /* Base Colors */
+  --color-base-50: '#FFFFFF';
+  --color-base-100: '#FFFFFF';
+  --color-base-200: '#FEFEFE';
+  --color-base-300: '#FDFDFD';
+  --color-base-400: '#FCFCFC';
+  --color-base-500: '#FBFBFB';
+  --color-base-600: '#E2E2E2';
+  --color-base-700: '#979797';
+  --color-base-800: '#717171';
+  --color-base-900: '#4B4B4B';
+
+  /* Primary Colors */
+  --color-primary-50: '#F6FAFC';
+  --color-primary-100: '#EDF5F8';
+  --color-primary-200: '#D1E7EF';
+  --color-primary-300: '#B5D8E5';
+  --color-primary-400: '#7EBBD1';
+  --color-primary-500: '#469EBD';
+  --color-primary-600: '#3F8EAA';
+  --color-primary-700: '#2A5F71';
+  --color-primary-800: '#204755';
+  --color-primary-900: '#152F39';
+
+  /* Secondary Colors */
+  --color-secondary-50: '#FAF7FB';
+  --color-secondary-100: '#F5F0F8';
+  --color-secondary-200: '#E6D9EC';
+  --color-secondary-300: '#D6C2E1';
+  --color-secondary-400: '#B895CB';
+  --color-secondary-500: '#9967B4';
+  --color-secondary-600: '#8A5DA2';
+  --color-secondary-700: '#5C3E6C';
+  --color-secondary-800: '#452E51';
+  --color-secondary-900: '#2E1F36';
+
+  /* Primary Variant Colors */
+  --color-primary-variant-50: '#FBFEFE';
+  --color-primary-variant-100: '#F6FCFC';
+  --color-primary-variant-200: '#E9F8F8';
+  --color-primary-variant-300: '#DCF3F4';
+  --color-primary-variant-400: '#C2EAEB';
+  --color-primary-variant-500: '#A8E1E3';
+  --color-primary-variant-600: '#97CBCC';
+  --color-primary-variant-700: '#658788';
+  --color-primary-variant-800: '#4C6566';
+  --color-primary-variant-900: '#324444';
+}

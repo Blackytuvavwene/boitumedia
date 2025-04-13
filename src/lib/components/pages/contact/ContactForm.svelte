@@ -48,7 +48,7 @@
       unobserveOnEnter: true
     }}
     on:inview_change={handleFormInView}
-    class="bg-gray-800 rounded-lg overflow-hidden border border-gray-700 shadow-xl"
+    class="bg-base-800 rounded-lg overflow-hidden border border-base-700 shadow-xl"
   >
     {#if formVisible}
       <div class="p-8" in:fly={{ y: 20, duration: 500 }}>
@@ -70,7 +70,7 @@
                   id="name"
                   bind:value={name}
                   required
-                  class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-white"
+                  class="w-full px-4 py-2 bg-base-700 border border-base-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-white"
                   placeholder="John Doe"
                 />
               </div>
@@ -82,7 +82,7 @@
                   id="email"
                   bind:value={email}
                   required
-                  class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-white"
+                  class="w-full px-4 py-2 bg-base-700 border border-base-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-white"
                   placeholder="john@example.com"
                 />
               </div>
@@ -95,7 +95,7 @@
                   type="tel"
                   id="phone"
                   bind:value={phone}
-                  class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-white"
+                  class="w-full px-4 py-2 bg-base-700 border border-base-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-white"
                   placeholder="+1 (123) 456-7890"
                 />
               </div>
@@ -106,7 +106,7 @@
                   type="text"
                   id="company"
                   bind:value={company}
-                  class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-white"
+                  class="w-full px-4 py-2 bg-base-700 border border-base-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-white"
                   placeholder="Your Company"
                 />
               </div>
@@ -118,7 +118,7 @@
                 id="projectType"
                 bind:value={projectType}
                 required
-                class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-white"
+                class="w-full px-4 py-2 bg-base-700 border border-base-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-white"
               >
                 <option value="" disabled selected>Select a project type</option>
                 <option value="web">Web Development</option>
@@ -146,7 +146,7 @@
                 type="checkbox"
                 id="privacy"
                 required
-                class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-600 rounded bg-gray-700"
+                class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-base-600 rounded bg-base-700"
               />
               <label for="privacy" class="ml-2 block text-sm text-gray-300">
                 I agree to the <a href="#" class="text-blue-400 hover:underline">Privacy Policy</a>

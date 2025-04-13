@@ -17,7 +17,7 @@
       unobserveOnEnter: true
     }}
     on:inview_change={handleMapInView}
-    class="bg-gray-800 rounded-lg overflow-hidden border border-gray-700 shadow-xl"
+    class="bg-base-800 rounded-lg overflow-hidden border border-base-700 shadow-xl"
   >
     {#if mapVisible}
       <div in:fly={{ y: 20, duration: 500 }}>
@@ -28,7 +28,7 @@
         
         <div class="relative h-80 w-full overflow-hidden">
           <!-- Placeholder for an actual map integration -->
-          <div class="absolute inset-0 bg-gray-700 flex items-center justify-center">
+          <div class="absolute inset-0 bg-base-700 flex items-center justify-center">
             <div class="text-center p-6">
               <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-400 mx-auto mb-4"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
               <p class="text-gray-300 mb-4">Interactive map would be displayed here</p>

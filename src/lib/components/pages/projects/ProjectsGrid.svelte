@@ -304,7 +304,7 @@
     }
   </script>
   
-  <section class="py-20 bg-gray-900">
+  <section class="py-20 bg-base-900">
     <div class="container mx-auto px-4">
       <div class="mb-12">
         <div class="flex flex-wrap justify-center gap-4">
@@ -336,7 +336,7 @@
             out:fade={{ duration: 200 }}
           >
             <div 
-              class="bg-gray-800 border-gray-700 overflow-hidden cursor-pointer hover:border-blue-500 transition-colors h-full flex flex-col rounded-lg border"
+              class="bg-base-800 border-base-700 overflow-hidden cursor-pointer hover:border-blue-500 transition-colors h-full flex flex-col rounded-lg border"
               onclick={() => selectedProject = project}
             >
               <div class="h-48 overflow-hidden">
@@ -357,12 +357,12 @@
               <div class="p-4 flex-grow">
                 <div class="flex flex-wrap gap-2">
                   {#each project.tags.slice(0, 3) as tag}
-                    <span class="inline-block px-2 py-1 bg-gray-700 text-gray-300 rounded-full text-xs">
+                    <span class="inline-block px-2 py-1 bg-base-700 text-base-300 rounded-full text-xs">
                       {tag}
                     </span>
                   {/each}
                   {#if project.tags.length > 3}
-                    <span class="inline-block px-2 py-1 bg-gray-700 text-gray-300 rounded-full text-xs">
+                    <span class="inline-block px-2 py-1 bg-base-700 text-base-300 rounded-full text-xs">
                       +{project.tags.length - 3}
                     </span>
                   {/if}
@@ -389,11 +389,11 @@
     {#if selectedProject}
       <div class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4" transition:fade={{ duration: 200 }}>
         <div 
-          class="bg-gray-800 rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto"
+          class="bg-base-800 rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto"
           in:scale={{ start: 0.9, duration: 300 }}
           out:scale={{ start: 1, duration: 200 }}
         >
-          <div class="sticky top-0 bg-gray-800 p-4 flex justify-between items-center border-b border-gray-700 z-10">
+          <div class="sticky top-0 bg-base-800 p-4 flex justify-between items-center border-b border-base-700 z-10">
             <h3 class="text-2xl font-bold text-white">{selectedProject.title}</h3>
             <button 
               onclick={() => selectedProject = null}
@@ -414,7 +414,7 @@
             
             <div class="flex flex-wrap gap-2 mb-6">
               {#each selectedProject.tags as tag}
-                <span class="inline-block px-2 py-1 bg-gray-700 text-gray-300 rounded-full text-xs">
+                <span class="inline-block px-2 py-1 bg-base-700 text-base-300 rounded-full text-xs">
                   {tag}
                 </span>
               {/each}
@@ -427,7 +427,7 @@
               </div>
               
               <div class="grid md:grid-cols-2 gap-6">
-                <div class="bg-gray-700 border-gray-600 rounded-lg overflow-hidden">
+                <div class="bg-base-700 border-base-600 rounded-lg overflow-hidden">
                   <div class="p-4 border-b border-gray-600">
                     <h5 class="text-white font-semibold">Features</h5>
                   </div>
@@ -443,14 +443,14 @@
                   </div>
                 </div>
                 
-                <div class="bg-gray-700 border-gray-600 rounded-lg overflow-hidden">
+                <div class="bg-base-700 border-base-600 rounded-lg overflow-hidden">
                   <div class="p-4 border-b border-gray-600">
                     <h5 class="text-white font-semibold">Technologies</h5>
                   </div>
                   <div class="p-4">
                     <div class="flex flex-wrap gap-2">
                       {#each selectedProject.technologies as tech}
-                        <span class="inline-block px-2 py-1 bg-gray-600 text-gray-300 rounded-full text-xs">
+                        <span class="inline-block px-2 py-1 bg-base-600 text-base-300 rounded-full text-xs">
                           {tech}
                         </span>
                       {/each}

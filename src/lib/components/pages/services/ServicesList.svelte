@@ -167,21 +167,21 @@
     }
 </script>
   
-  <section class="py-20 bg-gray-900">
+<section class="py-20 bg-base-900">
     <div class="container mx-auto px-4">
       <h2 class="text-3xl font-bold text-white text-center mb-16">Our Digital Services</h2>
       
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <!-- Service Navigation -->
         <div class="lg:col-span-1">
-          <div class="bg-gray-800 rounded-lg p-4">
+          <div class="bg-base-800 rounded-lg p-4">
             {#each services as service}
               <button
                 onclick={() => selectedService = service}
                 class={`w-full text-left p-4 rounded-lg mb-2 flex items-center transition-colors ${
                   selectedService.id === service.id
                     ? "bg-blue-600 text-white"
-                    : "bg-gray-700 text-gray-300 hover:bg-gray-600"
+                    : "bg-base-700 text-base-300 hover:bg-base-600"
                 }`}
               >
                 {@html getIcon(service.icon)}
@@ -195,7 +195,7 @@
         <div class="lg:col-span-2">
           {#key selectedService.id}
             <div 
-              class="bg-gray-800 rounded-lg overflow-hidden"
+              class="bg-base-800 rounded-lg overflow-hidden"
               in:fly={{ y: 20, duration: 300 }}
               out:fade={{ duration: 200 }}
             >
@@ -215,7 +215,7 @@
                 <p class="text-gray-300 mb-6 text-lg">{selectedService.description}</p>
                 
                 <div class="grid md:grid-cols-2 gap-6 mb-8">
-                  <div class="bg-gray-700 border-gray-600 rounded-lg overflow-hidden">
+                  <div class="bg-base-700 border-base-600 rounded-lg overflow-hidden">
                     <div class="p-4 border-b border-gray-600">
                       <h4 class="text-white text-lg font-semibold">Key Features</h4>
                     </div>
@@ -231,14 +231,14 @@
                     </div>
                   </div>
                   
-                  <div class="bg-gray-700 border-gray-600 rounded-lg overflow-hidden">
+                  <div class="bg-base-700 border-base-600 rounded-lg overflow-hidden">
                     <div class="p-4 border-b border-gray-600">
                       <h4 class="text-white text-lg font-semibold">Technologies</h4>
                     </div>
                     <div class="p-4">
                       <div class="flex flex-wrap gap-2">
                         {#each selectedService.technologies as tech}
-                          <span class="inline-block px-3 py-1 bg-gray-800 text-blue-400 rounded-full text-sm">
+                          <span class="inline-block px-3 py-1 bg-base-800 text-blue-400 rounded-full text-sm">
                             {tech}
                           </span>
                         {/each}

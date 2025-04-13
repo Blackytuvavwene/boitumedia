@@ -1,16 +1,16 @@
 <script>
-	import { HomePageStrings } from './../../../utils/strings.ts';
-	import Button from "$lib/components/global/ui/Button.svelte";
+	import Button from '$lib/components/global/ui/Button.svelte';
+	import { HomePageStrings } from './../../../utils/strings';
 
 </script>
-<section class="relative min-h-[80vh] flex items-center justify-center bg-linear-to-b from-secondary to-blue-900 pt-16">
+<section class="relative min-h-[80vh] flex items-center justify-center bg-linear-to-b from-primary-700 to-secondary-900 pt-16">
 
-    <!-- geometric shapes -->
-    <div class="absolute inset-0 opacity-20">
+   <!-- geometric shapes -->
+    <!-- <div class="absolute inset-0 opacity-20">
         <div class="absolute top-1/4 left-1/4 w-64 h-64 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl animate-blob"></div>
         <div class="absolute top-1/3 right-1/4 w-64 h-64 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-2000"></div>
         <div class="absolute bottom-1/4 left-1/3 w-64 h-64 bg-indigo-500 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-4000"></div>
-      </div>
+    </div> -->
     <!-- hero content -->
     <div class="container mx-6 relative text-center text-white z-10">
         <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight">
@@ -28,7 +28,7 @@
             <a href="/contact">
               <Button
                 size="lg"
-                class="hover:cursor-pointer hover:bg-blue-600 transition-all hover:scale-105 hover:shadow-lg"
+                class="hover:cursor-pointer hover:bg-primary-600 transition-all hover:scale-105 hover:shadow-lg"
               >
                 Start Your Digital Journey
               </Button>
@@ -37,7 +37,7 @@
               <Button
                 size="lg"
                 variant="secondary"
-                class="hover:cursor-pointer hover:bg-blue-600 transition-all hover:scale-105 hover:shadow-lg"
+                class="hover:cursor-pointer hover:bg-secondary-600 transition-all hover:scale-105 hover:shadow-lg"
               >
                 See Success Stories
               </Button>

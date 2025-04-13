@@ -55,66 +55,66 @@
           return '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>';
       }
     }
-  </script>
+</script>
   
-  <section class="py-20 bg-gray-800">
-    <div class="container mx-auto px-4">
-      <h2 class="text-3xl font-bold text-white text-center mb-16">Our Service Process</h2>
-      
-      <div class="max-w-5xl mx-auto">
-        <div class="relative">
-          <!-- Process steps -->
-          <div class="space-y-16">
-            {#each steps as step, index}
-              <div 
-                use:inview={{
-                  rootMargin: '0px 0px -100px 0px',
-                  unobserveOnEnter: true
-                }}
-                oninview_change={({ detail }) => handleInView(index, detail.inView)}
-                class="relative"
-              >
-                {#if visibleSteps[index]}
-                  <div
-                    in:fly={{ x: index % 2 === 0 ? -50 : 50, duration: 500, delay: 200 }}
-                    class={`flex ${index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'} items-center`}
-                  >
-                    <div class="hidden md:flex items-center justify-center w-16 h-16 bg-blue-600 rounded-full shrink-0">
-                      {@html getIcon(step.icon)}
-                    </div>
-                    
-                    <div class={`flex-grow ${index % 2 === 0 ? 'md:ml-8' : 'md:mr-8'}`}>
-                      <div class="bg-gray-700 border-gray-600 rounded-lg overflow-hidden">
-                        <div class="p-4 flex md:flex-row items-start gap-4">
-                          <div class="md:hidden flex items-center justify-center w-12 h-12 bg-blue-600 rounded-full shrink-0">
-                            {@html getIcon(step.icon)}
-                          </div>
-                          <div>
-                            <h4 class="text-white text-xl flex items-center">
-                              <span class="inline-block w-8 h-8 bg-blue-600 text-white rounded-full text-center leading-8 mr-3 md:hidden">
-                                {index + 1}
-                              </span>
-                              {step.title}
-                            </h4>
-                          </div>
+<section class="py-20 bg-gray-800">
+  <div class="container mx-auto px-4">
+    <h2 class="text-3xl font-bold text-white text-center mb-16">Our Service Process</h2>
+    
+    <div class="max-w-5xl mx-auto">
+      <div class="relative">
+        <!-- Process steps -->
+        <div class="space-y-16">
+          {#each steps as step, index}
+            <div 
+              use:inview={{
+                rootMargin: '0px 0px -100px 0px',
+                unobserveOnEnter: true
+              }}
+              oninview_change={({ detail }) => handleInView(index, detail.inView)}
+              class="relative"
+            >
+              {#if visibleSteps[index]}
+                <div
+                  in:fly={{ x: index % 2 === 0 ? -50 : 50, duration: 500, delay: 200 }}
+                  class={`flex ${index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'} items-center`}
+                >
+                  <div class="hidden md:flex items-center justify-center w-16 h-16 bg-blue-600 rounded-full shrink-0">
+                    {@html getIcon(step.icon)}
+                  </div>
+                  
+                  <div class={`flex-grow ${index % 2 === 0 ? 'md:ml-8' : 'md:mr-8'}`}>
+                    <div class="bg-gray-700 border-gray-600 rounded-lg overflow-hidden">
+                      <div class="p-4 flex md:flex-row items-start gap-4">
+                        <div class="md:hidden flex items-center justify-center w-12 h-12 bg-blue-600 rounded-full shrink-0">
+                          {@html getIcon(step.icon)}
                         </div>
-                        <div class="p-4 pt-0 text-gray-300">
-                          {step.description}
+                        <div>
+                          <h4 class="text-white text-xl flex items-center">
+                            <span class="inline-block w-8 h-8 bg-blue-600 text-white rounded-full text-center leading-8 mr-3 md:hidden">
+                              {index + 1}
+                            </span>
+                            {step.title}
+                          </h4>
                         </div>
                       </div>
-                    </div>
-                    
-                    <div class="hidden md:flex items-center justify-center w-8 h-8 bg-blue-600 rounded-full text-white font-bold shrink-0">
-                      {index + 1}
+                      <div class="p-4 pt-0 text-gray-300">
+                        {step.description}
+                      </div>
                     </div>
                   </div>
-                {/if}
-              </div>
-            {/each}
-          </div>
+                  
+                  <div class="hidden md:flex items-center justify-center w-8 h-8 bg-blue-600 rounded-full text-white font-bold shrink-0">
+                    {index + 1}
+                  </div>
+                </div>
+              {/if}
+            </div>
+          {/each}
         </div>
       </div>
     </div>
+  </div>
 </section>
   
   

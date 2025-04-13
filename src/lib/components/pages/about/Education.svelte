@@ -50,14 +50,14 @@
     }
 </script>
   
-<section class="py-20 bg-gray-900">
+<section class="py-20 bg-primary-900">
     <div class="container mx-auto px-4">
-      <h2 class="text-3xl font-bold text-white text-center mb-12">Educational Background</h2>
+      <h2 class="text-3xl font-bold text-gray-300 text-center mb-12">Educational Background</h2>
   
       <div class="max-w-4xl mx-auto">
         <div class="relative">
           <!-- Timeline line -->
-          <div class="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 h-full w-1 bg-blue-600"></div>
+          <div class="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 h-full w-1 bg-primary-600"></div>
   
           <!-- Timeline items -->
           <div class="space-y-12">
@@ -79,20 +79,20 @@
                     class="relative"
                   >
                     <!-- Timeline node -->
-                    <div class="absolute left-0 md:left-1/2 transform -translate-y-1/2 md:-translate-x-1/2 w-10 h-10 rounded-full bg-blue-600 border-4 border-gray-900 flex items-center justify-center z-10">
+                    <div class="absolute left-0 md:left-1/2 transform -translate-y-1/2 md:-translate-x-1/2 w-10 h-10 rounded-full bg-primary-600 border-4 border-primary-400 flex items-center justify-center z-10">
                       {@html getIcon(item.icon)}
                     </div>
   
                     <!-- Content -->
                     <div class={`md:w-1/2 ${item.side === "left" ? "md:pr-12 ml-12 md:ml-0" : "md:pl-12 ml-12 md:ml-auto"}`}>
-                      <div class="bg-gray-800 border-gray-700 rounded-lg overflow-hidden">
-                        <div class="p-4 border-b border-gray-700">
+                      <div class="bg-primary-800 border-gray-900 rounded-lg overflow-hidden">
+                        <div class="p-4 border-b border-gray-600">
                           <div class="flex justify-between items-center">
                             <h4 class="text-white font-semibold">{item.title}</h4>
-                            <span class="text-blue-400 text-sm font-medium">{item.date}</span>
+                            <span class="text-primary-400 text-sm font-medium">{item.date}</span>
                           </div>
                         </div>
-                        <div class="p-4 text-gray-300">
+                        <div class="p-4 text-base-600">
                           {item.content}
                         </div>
                       </div>
