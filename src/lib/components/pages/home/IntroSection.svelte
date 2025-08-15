@@ -12,7 +12,7 @@
         <div class="absolute bottom-1/4 left-1/3 w-64 h-64 bg-indigo-500 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-4000"></div>
     </div> -->
     <!-- hero content -->
-  <div class="container mx-6 relative text-center text-base-content z-10">
+  <div class="container mx-6 relative text-center text-base z-10">
         <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight">
                 Transform Your Business:
             <br>
@@ -20,7 +20,7 @@
                 Go Digital, Go Beyond
             </span>
         </h1>
-  <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto text-base-content/90">
+  <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto text-white">
             {HomePageStrings.HERO_PARAGRAPH}
         </p>
         <div class="flex textarea-xs flex-col justify-center gap-4 md:flex-row">

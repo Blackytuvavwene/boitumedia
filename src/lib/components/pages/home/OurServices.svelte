@@ -56,7 +56,7 @@
   <h2 id="services-heading" class="font-black text-2xl">
     {HomePageStrings.SERVICES_TITLE}
   </h2>
-  <ul class="grid md:grid-cols-2 m-16 gap-8 h-full overflow-hidden" aria-label="Our Services">
+  <ul class="grid md:grid-cols-2 p-16 m-16 gap-8 h-full overflow-hidden" aria-label="Our Services">
     {#each services as service, index (service.title)}
       <AnimateInView animate={fly} animationConfig={getAnimationParams(index)}>
         <li
