@@ -32,4 +32,8 @@ export class HomePageStrings {
             ariaLabel: "Frontend Development: Responsive and interactive user interfaces with modern frameworks."
         }
     }
+
+    // homepage projects section
+    static readonly PROJECTS_TITLE = 'Featured Projects'
+    static readonly PROJECTS_SUBTITLE = 'A quick look at what we build.'
 }
