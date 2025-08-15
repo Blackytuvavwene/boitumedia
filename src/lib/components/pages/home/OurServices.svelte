@@ -58,14 +58,17 @@
   </h2>
   <ul class="grid md:grid-cols-2 m-16 gap-8 h-full overflow-hidden" aria-label="Our Services">
     {#each services as service, index (service.title)}
-    <AnimateInView animate={fly} animationConfig={getAnimationParams(index)}>
+      <AnimateInView animate={fly} animationConfig={getAnimationParams(index)}>
         <li
-      class="bg-base-100 p-8 w-full rounded-xl flex flex-col gap-4 border border-base-300 focus-within:ring-2 focus-within:ring-primary hover:shadow-lg transition-shadow"
+          class="relative group bg-base-100 p-8 w-full rounded-xl flex flex-col gap-4 border border-base-300 shadow-md focus-within:ring-2 focus-within:ring-primary/60 transform-gpu transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl hover:border-primary/50"
           role="article"
           aria-label={service.ariaLabel}
         >
+          <div class="pointer-events-none absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-primary to-secondary opacity-0 group-hover:opacity-100 transition-opacity"></div>
           <div class="text-primary" aria-hidden="true">
-            <service.icon size="34px" />
+            <div class="w-12 h-12 rounded-lg bg-primary/10 text-primary flex items-center justify-center transition-colors group-hover:bg-primary/15">
+              <service.icon size="24px" />
+            </div>
           </div>
 
           <div class="service-details">

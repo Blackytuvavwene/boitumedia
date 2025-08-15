@@ -63,12 +63,13 @@
     <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
       {#each featured as p (p.id)}
         <article
-          class="group rounded-xl overflow-hidden border border-base-300 bg-base-100 shadow-sm hover:shadow-md transition-shadow"
+          class="group rounded-xl overflow-hidden border border-base-300 bg-base-100 shadow-md transition-all duration-300 transform-gpu hover:-translate-y-1.5 hover:shadow-2xl hover:border-primary/60"
           in:fly={{ y: 24, duration: 350 }}
           out:fade={{ duration: 150 }}
         >
           <a href={p.href ?? '/projects'} class="block focus:outline-none focus:ring-2 focus:ring-primary/70">
-            <div class="h-44 bg-base-200 overflow-hidden">
+            <div class="relative h-44 bg-base-200 overflow-hidden">
+              <div class="pointer-events-none absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-primary to-secondary opacity-0 group-hover:opacity-100 transition-opacity"></div>
               <img
                 src={p.image || '/placeholder.svg'}
                 alt={p.title}
@@ -82,7 +83,7 @@
               {#if p.tags?.length}
                 <div class="flex flex-wrap gap-2 mt-3">
                   {#each p.tags.slice(0,3) as tag}
-                    <span class="badge badge-outline text-xs">{tag}</span>
+                    <span class="badge badge-outline text-xs group-hover:badge-primary transition-colors">{tag}</span>
                   {/each}
                 </div>
               {/if}
