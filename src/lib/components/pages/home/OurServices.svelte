@@ -80,4 +80,7 @@
       </AnimateInView>
     {/each}
   </ul>
+  <div class="mt-8">
+    <a href="/projects" class="btn btn-primary">View Our Projects</a>
+  </div>
 </section>

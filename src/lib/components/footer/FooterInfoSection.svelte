@@ -27,41 +27,23 @@
         },
     ];
 
-    // more services or projects here...
+    // more projects info here...
     const moreInfo = [
         {
-            title: 'Services',
+            title: 'Projects',
             icon: Code,
             links: [
                 {
-                    title: 'Web Development',
-                    href: '/services/web-development',
+                    title: 'Web Projects',
+                    href: '/projects',
                 },
                 {
-                    title: 'Mobile App Development',
-                    href: '/services/mobile-development',
+                    title: 'Mobile Projects',
+                    href: '/projects',
                 },
                 {
-                    title: 'Backend Development',
-                    href: '/services/backend-development',
-                },
-                {
-                    title: 'UI/UX Design',
-                    href: '/services/ui-ux-design',
-                }
-            ]
-        },
-        {
-            title: 'Business',
-            icon: Server,
-            links: [
-                {
-                    title: 'About Us',
-                    href: '/about',
-                },
-                {
-                    title: 'Contact Us',
-                    href: '/contact',
+                    title: 'Backend Projects',
+                    href: '/projects',
                 }
             ]
         },
@@ -70,16 +52,8 @@
             icon: Database,
             links: [
                 {
-                    title: 'Blog',
-                    href: '/blog',
-                },
-                {
-                    title: 'FAQ',
-                    href: '/faq',
-                },
-                {
-                    title: 'Case Studies',
-                    href: '/case-studies',
+                    title: 'Projects',
+                    href: '/projects',
                 }
             ]
         }
