@@ -13,7 +13,7 @@
     </div> -->
     <!-- hero content -->
   <div class="container mx-6 relative text-center text-base z-10">
-        <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight">
+        <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight text-white">
                 Transform Your Business:
             <br>
             <span class="text-primary text-stroke-black stroke-4">
