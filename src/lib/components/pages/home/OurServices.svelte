@@ -52,15 +52,15 @@
   // This comment can be removed or completed if needed
 </script>
 
-<section class="w-full bg-base-200 flex flex-col items-center m-auto py-10 min-h-92 h-full" aria-labelledby="services-heading">
+<section class="w-full bg-base-100 flex flex-col items-center m-auto py-10 min-h-92 h-full" aria-labelledby="services-heading">
   <h2 id="services-heading" class="font-black text-2xl">
     {HomePageStrings.SERVICES_TITLE}
   </h2>
   <ul class="grid md:grid-cols-2 m-16 gap-8 h-full overflow-hidden" aria-label="Our Services">
     {#each services as service, index (service.title)}
-      <AnimateInView animate={fly} animationConfig={getAnimationParams(index)}>
+    <AnimateInView animate={fly} animationConfig={getAnimationParams(index)}>
         <li
-          class="bg-white p-8 w-full rounded-xl flex flex-col gap-4 focus-within:ring-2 focus-within:ring-primary hover:shadow-lg transition-shadow"
+      class="bg-base-100 p-8 w-full rounded-xl flex flex-col gap-4 border border-base-300 focus-within:ring-2 focus-within:ring-primary hover:shadow-lg transition-shadow"
           role="article"
           aria-label={service.ariaLabel}
         >
@@ -69,10 +69,10 @@
           </div>
 
           <div class="service-details">
-            <h3 class="font-bold text-xl" id={`service-${index}`}>
+            <h3 class="font-bold text-xl text-base-content" id={`service-${index}`}>
               {service.title}
             </h3>
-            <p aria-labelledby={`service-${index}`}>
+            <p class="text-base-content/80" aria-labelledby={`service-${index}`}>
               {service.description}
             </p>
           </div>
