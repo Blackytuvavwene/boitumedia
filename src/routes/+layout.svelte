@@ -3,6 +3,8 @@
 	import Navbar from '$lib/components/navbar/Navbar.svelte';
 	import Footer from '$lib/components/footer/Footer.svelte';
 	import { page } from '$app/state';
+	import { themeState } from '$lib/stores/theme.svelte';
+	import { onMount } from 'svelte';
 
 	// Default SEO values
 	const defaultSeo = {
@@ -11,6 +13,12 @@
 		keywords: 'web development, mobile development, digital solutions, software services',
 		canonicalUrl: 'https://boitumedia.xyz'
 	};
+
+	// Initialize theme on mount
+	onMount(() => {
+		// Theme is already initialized in the theme store constructor
+		// This ensures reactivity is set up properly
+	});
 </script>
 
 <svelte:head>

@@ -1,162 +1,182 @@
 @import 'tailwindcss';
+@import 'tw-animate-css';
 
 @plugin '@tailwindcss/typography';
 @plugin 'daisyui';
 
-@plugin "daisyui/theme" {
-  name: "btheme";
-  default: false;
-  prefersdark: false;
-  color-scheme: "light";
-  /* Base Colors */
-  --color-base-50: '#FFFFFF';
-  --color-base-100: '#FFFFFF';
-  --color-base-200: '#FEFEFE';
-  --color-base-300: '#FDFDFD';
-  --color-base-400: '#FCFCFC';
-  --color-base-500: '#FBFBFB';
-  --color-base-600: '#E2E2E2';
-  --color-base-700: '#979797';
-  --color-base-800: '#717171';
-  --color-base-900: '#4B4B4B';
-  --color-base-content: oklch(21% 0.006 285.885);
+@custom-variant dark (&:is(.dark *));
 
-
-  --color-primary: #16d0cc;
-  /* Primary Colors */
-  --color-primary-50: '#F6FAFC';
-  --color-primary-100: '#EDF5F8';
-  --color-primary-200: '#D1E7EF';
-  --color-primary-300: '#B5D8E5';
-  --color-primary-400: '#7EBBD1';
-  --color-primary-500: '#469EBD';
-  --color-primary-600: '#3F8EAA';
-  --color-primary-700: '#2A5F71';
-  --color-primary-800: '#204755';
-  --color-primary-900: '#152F39';
-  --color-primary-content: oklch(12% 0.042 264.695);
-
-  /* Primary Variant Colors */
-  --color-primary-variant-50: '#FBFEFE';
-  --color-primary-variant-100: '#F6FCFC';
-  --color-primary-variant-200: '#E9F8F8';
-  --color-primary-variant-300: '#DCF3F4';
-  --color-primary-variant-400: '#C2EAEB';
-  --color-primary-variant-500: '#A8E1E3';
-  --color-primary-variant-600: '#97CBCC';
-  --color-primary-variant-700: '#658788';
-  --color-primary-variant-800: '#4C6566';
-  --color-primary-variant-900: '#324444';
-
-  /* Secondary Colors */
-  --color-secondary: #9671af;
-  --color-secondary-content: oklch(13% 0.028 261.692);
-  --color-secondary-50: '#FAF7FB';
-  --color-secondary-100: '#F5F0F8';
-  --color-secondary-200: '#E6D9EC';
-  --color-secondary-300: '#D6C2E1';
-  --color-secondary-400: '#B895CB';
-  --color-secondary-500: '#9967B4';
-  --color-secondary-600: '#8A5DA2';
-  --color-secondary-700: '#5C3E6C';
-  --color-secondary-800: '#452E51';
-  --color-secondary-900: '#2E1F36';
-
-  /* Accent Colors */
-  --color-accent: #a07eb6;
-  --color-accent-content: oklch(14% 0 0);
-  --color-neutral: oklch(14% 0.005 285.823);
-  --color-neutral-content: oklch(92% 0.004 286.32);
-  --color-info: oklch(74% 0.16 232.661);
-  --color-info-content: oklch(29% 0.066 243.157);
-  --color-success: oklch(76% 0.177 163.223);
-  --color-success-content: oklch(37% 0.077 168.94);
-  --color-warning: oklch(82% 0.189 84.429);
-  --color-warning-content: oklch(41% 0.112 45.904);
-  --color-error: oklch(71% 0.194 13.428);
-  --color-error-content: oklch(27% 0.105 12.094);
-  --radius-selector: 0.5rem;
-  --radius-field: 0.5rem;
-  --radius-box: 0.5rem;
-  --size-selector: 0.25rem;
-  --size-field: 0.25rem;
-  --border: 1px;
-  --depth: 1;
-  --noise: 1;
+:root {
+  /* Light theme - cyan/lavender futuristic palette */
+  --background: oklch(0.98 0.01 180); /* Light mint white */
+  --foreground: oklch(0.15 0.02 240); /* Deep dark blue-black */
+  --card: oklch(0.96 0.01 180); /* Slightly darker white */
+  --card-foreground: oklch(0.15 0.02 240);
+  --popover: oklch(0.96 0.01 180);
+  --popover-foreground: oklch(0.15 0.02 240);
+  --primary: oklch(0.55 0.18 190); /* Darker cyan for light mode */
+  --primary-foreground: oklch(0.98 0.01 180);
+  --secondary: oklch(0.58 0.15 300); /* Darker lavender for light mode */
+  --secondary-foreground: oklch(0.98 0.01 180);
+  --muted: oklch(0.92 0.01 180);
+  --muted-foreground: oklch(0.45 0.02 240);
+  --accent: oklch(0.52 0.2 180); /* Darker aqua for light mode */
+  --accent-foreground: oklch(0.98 0.01 180);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.985 0.01 180);
+  --border: oklch(0.88 0.01 180);
+  --input: oklch(0.88 0.01 180);
+  --ring: oklch(0.55 0.18 190);
+  --chart-1: oklch(0.55 0.18 190);
+  --chart-2: oklch(0.58 0.15 300);
+  --chart-3: oklch(0.52 0.2 180);
+  --chart-4: oklch(0.68 0.08 150);
+  --chart-5: oklch(0.6 0.12 270);
+  --radius: 0.5rem;
+  --sidebar: oklch(0.96 0.01 180);
+  --sidebar-foreground: oklch(0.15 0.02 240);
+  --sidebar-primary: oklch(0.55 0.18 190);
+  --sidebar-primary-foreground: oklch(0.98 0.01 180);
+  --sidebar-accent: oklch(0.92 0.01 180);
+  --sidebar-accent-foreground: oklch(0.15 0.02 240);
+  --sidebar-border: oklch(0.88 0.01 180);
+  --sidebar-ring: oklch(0.55 0.18 190);
 }
 
-/* 
-  The default border color has changed to `currentColor` in Tailwind CSS v4,
-  so we've added these compatibility styles to make sure everything still
-  looks the same as it did with Tailwind CSS v3.
+.dark {
+  /* Dark theme - original colors */
+  --background: oklch(0.12 0.02 240); /* Deep dark blue-black */
+  --foreground: oklch(0.95 0.01 180); /* Light mint white */
+  --card: oklch(0.18 0.03 240); /* Slightly lighter dark */
+  --card-foreground: oklch(0.95 0.01 180);
+  --popover: oklch(0.18 0.03 240);
+  --popover-foreground: oklch(0.95 0.01 180);
+  --primary: oklch(0.65 0.15 190); /* Cyan */
+  --primary-foreground: oklch(0.12 0.02 240);
+  --secondary: oklch(0.68 0.12 300); /* Lavender */
+  --secondary-foreground: oklch(0.12 0.02 240);
+  --muted: oklch(0.25 0.02 240);
+  --muted-foreground: oklch(0.65 0.02 240);
+  --accent: oklch(0.62 0.18 180); /* Aqua */
+  --accent-foreground: oklch(0.12 0.02 240);
+  --destructive: oklch(0.396 0.141 25.723);
+  --destructive-foreground: oklch(0.985 0.01 180);
+  --border: oklch(0.25 0.02 240);
+  --input: oklch(0.25 0.02 240);
+  --ring: oklch(0.65 0.15 190);
+  --chart-1: oklch(0.65 0.15 190);
+  --chart-2: oklch(0.68 0.12 300);
+  --chart-3: oklch(0.62 0.18 180);
+  --chart-4: oklch(0.88 0.05 150);
+  --chart-5: oklch(0.7 0.1 270);
+  --sidebar: oklch(0.15 0.02 240);
+  --sidebar-foreground: oklch(0.95 0.01 180);
+  --sidebar-primary: oklch(0.65 0.15 190);
+  --sidebar-primary-foreground: oklch(0.12 0.02 240);
+  --sidebar-accent: oklch(0.25 0.02 240);
+  --sidebar-accent-foreground: oklch(0.95 0.01 180);
+  --sidebar-border: oklch(0.25 0.02 240);
+  --sidebar-ring: oklch(0.65 0.15 190);
+}
 
-  If we ever want to remove these styles, we need to add an explicit border
-  color utility to any element that depends on these defaults. */
+@theme inline {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
 
 @layer base {
-  *,
-  ::after,
-  ::before,
-  ::backdrop,
-  ::file-selector-button {
-    border-color: var(--color-gray-200, currentColor);
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
   }
 
-  /* * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    scroll-behavior: smooth;
-  } */
+  /* Custom scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-muted;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-primary;
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-secondary;
+  }
 }
 
+/* Gradient text utility */
+@layer utilities {
+  .gradient-text {
+    background: linear-gradient(135deg, oklch(0.65 0.15 190), oklch(0.68 0.12 300));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
 
-@theme {
-  /* Base Colors */
-  --color-base-50: '#FFFFFF';
-  --color-base-100: '#FFFFFF';
-  --color-base-200: '#FEFEFE';
-  --color-base-300: '#FDFDFD';
-  --color-base-400: '#FCFCFC';
-  --color-base-500: '#FBFBFB';
-  --color-base-600: '#E2E2E2';
-  --color-base-700: '#979797';
-  --color-base-800: '#717171';
-  --color-base-900: '#4B4B4B';
+  .dark .gradient-text {
+    background: linear-gradient(135deg, oklch(0.65 0.15 190), oklch(0.68 0.12 300));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
 
-  /* Primary Colors */
-  --color-primary-50: '#F6FAFC';
-  --color-primary-100: '#EDF5F8';
-  --color-primary-200: '#D1E7EF';
-  --color-primary-300: '#B5D8E5';
-  --color-primary-400: '#7EBBD1';
-  --color-primary-500: '#469EBD';
-  --color-primary-600: '#3F8EAA';
-  --color-primary-700: '#2A5F71';
-  --color-primary-800: '#204755';
-  --color-primary-900: '#152F39';
+  .gradient-border {
+    position: relative;
+    @apply bg-card;
+  }
 
-  /* Secondary Colors */
-  --color-secondary-50: '#FAF7FB';
-  --color-secondary-100: '#F5F0F8';
-  --color-secondary-200: '#E6D9EC';
-  --color-secondary-300: '#D6C2E1';
-  --color-secondary-400: '#B895CB';
-  --color-secondary-500: '#9967B4';
-  --color-secondary-600: '#8A5DA2';
-  --color-secondary-700: '#5C3E6C';
-  --color-secondary-800: '#452E51';
-  --color-secondary-900: '#2E1F36';
-
-  /* Primary Variant Colors */
-  --color-primary-variant-50: '#FBFEFE';
-  --color-primary-variant-100: '#F6FCFC';
-  --color-primary-variant-200: '#E9F8F8';
-  --color-primary-variant-300: '#DCF3F4';
-  --color-primary-variant-400: '#C2EAEB';
-  --color-primary-variant-500: '#A8E1E3';
-  --color-primary-variant-600: '#97CBCC';
-  --color-primary-variant-700: '#658788';
-  --color-primary-variant-800: '#4C6566';
-  --color-primary-variant-900: '#324444';
+  .gradient-border::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, oklch(0.65 0.15 190), oklch(0.68 0.12 300));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+  }
 }

@@ -1,9 +1,22 @@
 <!doctype html>
-<html data-theme="btheme" lang="en">
+<html lang="en">
 	<head>
 		<meta charset="utf-8" />
 		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<script>
+			// Prevent flash of unstyled content (FOUC) by applying theme before page renders
+			(function() {
+				const theme = localStorage.getItem('theme') || 'system';
+				let resolvedTheme = theme;
+				
+				if (theme === 'system') {
+					resolvedTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+				}
+				
+				document.documentElement.classList.add(resolvedTheme);
+			})();
+		</script>
 		%sveltekit.head%
 	</head>
 	<body data-sveltekit-preload-data="hover">

@@ -3,10 +3,22 @@
     import { createDropdownMenu, melt} from '@melt-ui/svelte';
     import { Menu, Cross, X } from 'lucide-svelte'
 	import { fly } from 'svelte/transition';
+    import { page } from '$app/state';
+	import ThemeToggle from '$lib/components/ThemeToggle.svelte';
 
     let isScrolled = $state(false)
     let isMenuOpen = $state(false)
     let scrollHeight = $state(0)
+
+    // is link active
+    let isActive = $state(false)
+
+    // check if link is active
+    $effect(() => {
+        isActive = navLinks.some(link => link.path === page
+.url.pathname
+        )
+    })
 
 
     // elements from melt ui to use in our dropdown menu
@@ -24,9 +36,19 @@
             id: 1
         },
         {
+            name: 'About',
+            path: '/about',
+            id: 2
+        },
+        {
             name: 'Projects',
             path: '/projects',
-            id: 5
+            id: 3
+        },
+        {
+            name: 'Contact',
+            path: '/contact',
+            id: 4
         }
     ]
 
@@ -47,7 +69,7 @@
 
 <svelte:window bind:scrollY={scrollHeight}/>
 
-<header class="fixed top-0 w-full z-50 {isScrolled ? "bg-secondary-content opacity-90 backdrop-blur-md " : "bg-transparent"}">
+<header class="fixed top-0 left-0 right-0 w-full z-50 {isScrolled ? " backdrop-blur-md " : "bg-transparent"} transition-colors duration-300 ease-in-out border-b border-border bg-background/80">
     <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
         <a href="/" aria-label="Home" class="">
             <span class="text-2xl font-bold text-white">
@@ -57,21 +79,29 @@
             </span>
         </a>
         <!-- Desktop menu -->
-        <ul class="items-center flex-grow hidden justify-center space-x-8 lg:flex">
+        <ul class="items-center flex-grow hidden justify-center space-x-8 md:flex">
             {#each navLinks as navLink}
             <li>
-                <a href={navLink.path} class="text-white hover:text-blue-400 transition-colors duration-300 relative group px-4">
+                <a href={navLink.path} class="text-foreground hover:text-primary transition-colors duration-300 relative group px-4">
                     {navLink.name}
                 </a>
             </li>
             {/each}
         </ul>
 
+		<!-- Desktop actions -->
+		<div class="hidden md:flex items-center gap-4">
+			<ThemeToggle />
+			<button class="btn btn-primary btn-md text-primary-content">
+				Get a quote
+			</button>
+		</div>
+
         <!-- Mobile menu button -->
         <button 
         type="button"
         use:melt={$trigger}
-        class="lg:hidden btn-md " onclick={() => isMenuOpen = !isMenuOpen}>
+        class="md:hidden btn-md " onclick={() => isMenuOpen = !isMenuOpen}>
             <!-- <span class="sr-only">Open main menu</span> -->
             {#if isMenuOpen}
                 <X color="white"/>
@@ -85,29 +115,26 @@
           <section 
           use:melt={$menu}
           transition:fly={{y: -50 , duration: 300,}}
-          class="lg:hidden absolute max-w-[98vw] w-full bg-gray-900 bg-opacity-95 rounded-lg shadow-lg flex flex-col gap-2 mt-6">
-            <ul class="flex flex-col divide-y divide-gray-600 px-4">
-              {#each navLinks as navLink}
-                <li class="py-4 px-4">
-                  <a href={navLink.path} use:melt={$item} class="text-white hover:text-blue-400 py-2">
-                    {navLink.name}
-                  </a>
-                </li>
-              {/each}
+          class="md:hidden container mx-auto px-4 py-4 bg-background/95 backdrop-blur-md w-full overflow-hidden transition-all duration-300 ease-in-out max-h-screen opacity-100">
+            <ul class="flex flex-col divide-y divide-border px-4">
+                <div class="container mx-auto px-4 py-4 bg-background/95 backdrop-blur-md border-b border-border">
+                    {#each navLinks as navLink}
+                      <li class="flex flex-col gap-2">
+                        <a href={navLink.path} use:melt={$item} class="text-foreground hover:text-primary py-2">
+                          {navLink.name}
+                        </a>
+                      </li>
+                    {/each}
+                </div>
             </ul>
-            <!-- get a quote button -->
-             <a href="#contact" class="btn btn-primary m-4 ">
-                Get a quote
-             </a>
+			<!-- Theme toggle and quote button -->
+			<div class="flex items-center justify-between px-4 py-3 border-t border-border">
+				<ThemeToggle />
+				<a href="#contact" class="btn btn-primary btn-sm">
+					Get a quote
+				</a>
+			</div>
           </section>
-
          {/if}
-         
-
-
-
-        <button class="hidden lg:block btn btn-primary btn-md text-primary-content">
-            Get a quote
-        </button>
     </nav>
 </header>
