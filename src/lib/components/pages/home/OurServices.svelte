@@ -1,89 +1,95 @@
 <script lang="ts">
-  import { Globe, Smartphone, Server, Code } from 'lucide-svelte';
-  import { fly } from 'svelte/transition';
-  import { linear } from 'svelte/easing';
+	import { Smartphone, Code, Terminal, Database } from '@lucide/svelte';
+	import { fly } from 'svelte/transition';
 	import { HomePageStrings } from '$lib/utils/strings';
-	import AnimateInView from '$lib/components/global/AnimateInView.svelte';
+	import Button from '$lib/components/global/ui/Button.svelte';
 
-  // services provided
-  const services = [
-    {
-      icon: Globe,
-      title: HomePageStrings.services.WEB_DEV.title,
-      description: HomePageStrings.services.WEB_DEV.description,
-      ariaLabel: HomePageStrings.services.WEB_DEV.ariaLabel
-    },
-    {
-      icon: Smartphone,
-      title: HomePageStrings.services.MOBILE_DEV.title,
-      description: HomePageStrings.services.MOBILE_DEV.description,
-      ariaLabel: HomePageStrings.services.MOBILE_DEV.ariaLabel
-    },
-    {
-      icon: Server,
-      title: HomePageStrings.services.BACKEND_DEV.title,
-      description: HomePageStrings.services.BACKEND_DEV.description,
-      ariaLabel: HomePageStrings.services.BACKEND_DEV.ariaLabel
-    },
-    {
-      icon: Code,
-      title: HomePageStrings.services.UI_UX_DESIGN.title,
-      description: HomePageStrings.services.UI_UX_DESIGN.description,
-      ariaLabel: HomePageStrings.services.UI_UX_DESIGN.ariaLabel
-    },
-  ];
-
-  // Function to calculate animation parameters based on index
-  function getAnimationParams(index: number) {
-    const baseDelay = 600;
-    const baseDuration = 500;
-    const delayIncrement = 150;
-    const durationIncrement = 100;
-
-    return {
-      x: 600,
-      duration: baseDuration + index * durationIncrement,
-      delay: baseDelay + index * delayIncrement,
-      easing: linear,
-    };
-  }
-
-  // calculate the width of each service card based on the number of services
-  // This comment can be removed or completed if needed
+	const services = [
+		{
+			icon: Smartphone,
+			title: HomePageStrings.services.FLUTTER_DEV.title,
+			description: HomePageStrings.services.FLUTTER_DEV.description,
+			ariaLabel: HomePageStrings.services.FLUTTER_DEV.ariaLabel
+		},
+		{
+			icon: Code,
+			title: HomePageStrings.services.SVELTE_DEV.title,
+			description: HomePageStrings.services.SVELTE_DEV.description,
+			ariaLabel: HomePageStrings.services.SVELTE_DEV.ariaLabel
+		},
+		{
+			icon: Terminal,
+			title: HomePageStrings.services.PYTHON_BACKEND.title,
+			description: HomePageStrings.services.PYTHON_BACKEND.description,
+			ariaLabel: HomePageStrings.services.PYTHON_BACKEND.ariaLabel
+		},
+		{
+			icon: Database,
+			title: HomePageStrings.services.DATABASE_SQL.title,
+			description: HomePageStrings.services.DATABASE_SQL.description,
+			ariaLabel: HomePageStrings.services.DATABASE_SQL.ariaLabel
+		}
+	];
 </script>
 
-<section class="w-full bg-base-100 flex flex-col items-center m-auto py-10 min-h-92 h-full" aria-labelledby="services-heading">
-  <h2 id="services-heading" class="font-black text-2xl">
-    {HomePageStrings.SERVICES_TITLE}
-  </h2>
-  <ul class="grid md:grid-cols-2 p-16 m-16 gap-8 h-full overflow-hidden" aria-label="Our Services">
-    {#each services as service, index (service.title)}
-      <AnimateInView animate={fly} animationConfig={getAnimationParams(index)}>
-        <li
-          class="relative group bg-base-100 p-8 w-full rounded-xl flex flex-col gap-4 border border-base-300 shadow-md focus-within:ring-2 focus-within:ring-primary/60 transform-gpu transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl hover:border-primary/50"
-          role="article"
-          aria-label={service.ariaLabel}
-        >
-          <div class="pointer-events-none absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-primary to-secondary opacity-0 group-hover:opacity-100 transition-opacity"></div>
-          <div class="text-primary" aria-hidden="true">
-            <div class="w-12 h-12 rounded-lg bg-primary/10 text-primary flex items-center justify-center transition-colors group-hover:bg-primary/15">
-              <service.icon size="24px" />
-            </div>
-          </div>
+<section
+	class="bg-background border-border/50 w-full border-b py-20"
+	aria-labelledby="services-heading"
+>
+	<div class="container mx-auto px-6">
+		<div class="mx-auto mb-16 max-w-3xl text-center">
+			<span
+				class="bg-primary/10 text-primary border-primary/20 mb-4 inline-block rounded-full border px-3 py-1 text-xs font-semibold"
+			>
+				Capabilities & Stack
+			</span>
+			<h2
+				id="services-heading"
+				class="text-foreground text-3xl font-extrabold tracking-tight md:text-5xl"
+			>
+				{HomePageStrings.SERVICES_TITLE}
+			</h2>
+			<p class="text-muted-foreground mt-4 text-base">
+				Specialized development skills and solutions crafted for performance, accessibility, and
+				clean architecture.
+			</p>
+		</div>
 
-          <div class="service-details">
-            <h3 class="font-bold text-xl text-base-content" id={`service-${index}`}>
-              {service.title}
-            </h3>
-            <p class="text-base-content/80" aria-labelledby={`service-${index}`}>
-              {service.description}
-            </p>
-          </div>
-        </li>
-      </AnimateInView>
-    {/each}
-  </ul>
-  <div class="mt-8">
-    <a href="/projects" class="btn btn-primary">View Our Projects</a>
-  </div>
+		<ul class="mx-auto grid max-w-5xl gap-8 md:grid-cols-2" aria-label="Core Stack">
+			{#each services as service, index (service.title)}
+				<li
+					class="group bg-card border-border hover:border-primary/50 relative flex flex-col gap-5 rounded-2xl border p-8 shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl"
+					in:fly={{ y: 24, duration: 400, delay: index * 100 }}
+					aria-label={service.ariaLabel}
+				>
+					<div
+						class="from-primary pointer-events-none absolute inset-x-0 top-0 h-1 rounded-t-2xl bg-gradient-to-r via-cyan-400 to-indigo-500 opacity-0 transition-opacity group-hover:opacity-100"
+					></div>
+					<div
+						class="bg-primary/10 text-primary group-hover:bg-primary/20 flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl transition-colors"
+					>
+						<service.icon size={26} />
+					</div>
+
+					<div class="space-y-2">
+						<h3 class="text-foreground text-2xl font-bold" id={`service-${index}`}>
+							{service.title}
+						</h3>
+						<p
+							class="text-muted-foreground text-sm leading-relaxed"
+							aria-labelledby={`service-${index}`}
+						>
+							{service.description}
+						</p>
+					</div>
+				</li>
+			{/each}
+		</ul>
+
+		<div class="mt-12 text-center">
+			<a href="/projects">
+				<Button size="lg" class="transition-transform hover:scale-105">Explore All Projects</Button>
+			</a>
+		</div>
+	</div>
 </section>

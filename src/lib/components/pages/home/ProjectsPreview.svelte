@@ -1,103 +1,214 @@
 <script lang="ts">
-  import { fade, fly } from 'svelte/transition';
-  import Button from '$lib/components/global/ui/Button.svelte';
-  import { HomePageStrings } from '$lib/utils/strings';
+	import { fade, fly } from 'svelte/transition';
+	import Button from '$lib/components/global/ui/Button.svelte';
+	import { ArrowUpRight } from '@lucide/svelte';
 
-  type Project = {
-    id: number;
-    title: string;
-    description: string;
-    image?: string;
-    tags?: string[];
-    href?: string;
-  };
+	type Project = {
+		id: number;
+		title: string;
+		subtitle: string;
+		description: string;
+		image: string;
+		category: string;
+		categoryLabel: string;
+		tags: string[];
+		href: string;
+	};
 
-  // Temporary showcase data. Replace with real data or load from an API later.
-  const featured: Project[] = [
-    {
-      id: 1,
-      title: 'E‑commerce Platform',
-      description: 'Full‑stack store with checkout, analytics, and admin tools.',
-      image: '/placeholder.svg?height=400&width=600',
-      tags: ['SvelteKit', 'Node', 'Stripe'],
-      href: '/projects'
-    },
-    {
-      id: 2,
-      title: 'Telemedicine App',
-      description: 'Secure virtual care with video, EHR, and prescriptions.',
-      image: '/placeholder.svg?height=400&width=600',
-      tags: ['WebRTC', 'MongoDB', 'Twilio'],
-      href: '/projects'
-    },
-    {
-      id: 3,
-      title: 'AI Content Studio',
-      description: 'Generate on‑brand content with measurable impact.',
-      image: '/placeholder.svg?height=400&width=600',
-      tags: ['AI', 'FastAPI', 'React'],
-      href: '/projects'
-    }
-  ];
+	let selectedCategory = $state('all');
 
-  const SECTION_TITLE = HomePageStrings?.PROJECTS_TITLE ?? 'Featured Projects';
-  const SECTION_SUB = HomePageStrings?.PROJECTS_SUBTITLE ?? 'A quick look at what we build.';
+	const projects: Project[] = [
+		{
+			id: 1,
+			title: 'FinTech Wallet & Mobile Pay',
+			subtitle: 'Flutter Mobile Application',
+			description:
+				'Cross-platform mobile wallet built with Flutter & Dart featuring biometric security and real-time transaction tracking.',
+			image: '/placeholder.svg?height=400&width=600',
+			category: 'flutter',
+			categoryLabel: 'Flutter App',
+			tags: ['Flutter', 'Dart', 'Firebase', 'REST API'],
+			href: '/projects/1'
+		},
+		{
+			id: 2,
+			title: 'Boitumedia Platform',
+			subtitle: 'SvelteKit Web Application',
+			description:
+				'Ultra-fast, high-contrast digital portfolio and client portal built with Svelte 5 runes, SvelteKit, and Tailwind CSS.',
+			image: '/placeholder.svg?height=400&width=600',
+			category: 'svelte',
+			categoryLabel: 'Svelte Web',
+			tags: ['Svelte 5', 'SvelteKit', 'TypeScript', 'Tailwind'],
+			href: '/projects/2'
+		},
+		{
+			id: 3,
+			title: 'Database & API Engine',
+			subtitle: 'Python & SQL Microservice',
+			description:
+				'Scalable backend API engine with PostgreSQL database connection pools, authentication, and automated data processing.',
+			image: '/placeholder.svg?height=400&width=600',
+			category: 'python',
+			categoryLabel: 'Python & SQL',
+			tags: ['Python', 'FastAPI', 'PostgreSQL', 'SQL'],
+			href: '/projects/3'
+		}
+	];
+
+	const filteredProjects = $derived(
+		selectedCategory === 'all' ? projects : projects.filter((p) => p.category === selectedCategory)
+	);
 </script>
 
-<section class="w-full bg-base-100 py-16" aria-labelledby="projects-preview-heading">
-  <div class="container mx-auto px-6">
-    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10">
-      <div>
-        <h2 id="projects-preview-heading" class="text-2xl md:text-3xl font-black tracking-tight">
-          {SECTION_TITLE}
-        </h2>
-        <p class="text-base-content/70 mt-2">
-          {SECTION_SUB}
-        </p>
-      </div>
-      <a href="/projects" class="self-start md:self-auto">
-        <Button size="lg" class="hover:scale-105 transition-transform">View all projects</Button>
-      </a>
-    </div>
+<section class="bg-background border-border/50 relative w-full overflow-hidden border-b py-24">
+	<!-- Giant Background Watermark Text (Reference 1) -->
+	<div
+		class="text-stroke-watermark pointer-events-none absolute top-6 left-1/2 z-0 -translate-x-1/2 text-[12vw] leading-none font-black tracking-widest whitespace-nowrap uppercase select-none"
+	>
+		PORTFOLIO
+	</div>
 
-    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-      {#each featured as p (p.id)}
-        <article
-          class="group rounded-xl overflow-hidden border border-base-300 bg-base-100 shadow-md transition-all duration-300 transform-gpu hover:-translate-y-1.5 hover:shadow-2xl hover:border-primary/60"
-          in:fly={{ y: 24, duration: 350 }}
-          out:fade={{ duration: 150 }}
-        >
-          <a href={p.href ?? '/projects'} class="block focus:outline-none focus:ring-2 focus:ring-primary/70">
-            <div class="relative h-44 bg-base-200 overflow-hidden">
-              <div class="pointer-events-none absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-primary to-secondary opacity-0 group-hover:opacity-100 transition-opacity"></div>
-              <img
-                src={p.image || '/placeholder.svg'}
-                alt={p.title}
-                class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                loading="lazy"
-              />
-            </div>
-            <div class="p-5">
-              <h3 class="font-semibold text-lg text-base-content">{p.title}</h3>
-              <p class="text-base-content/70 mt-1">{p.description}</p>
-              {#if p.tags?.length}
-                <div class="flex flex-wrap gap-2 mt-3">
-                  {#each p.tags.slice(0,3) as tag}
-                    <span class="badge badge-outline text-xs group-hover:badge-primary transition-colors">{tag}</span>
-                  {/each}
-                </div>
-              {/if}
-            </div>
-          </a>
-        </article>
-      {/each}
-    </div>
+	<div class="relative z-10 container mx-auto px-6">
+		<!-- Header & Title (Reference 1) -->
+		<div class="mx-auto mb-10 max-w-3xl text-center">
+			<span
+				class="bg-primary/10 text-primary border-primary/20 mb-3 inline-block rounded-full border px-3.5 py-1 text-xs font-semibold"
+			>
+				Portfolio Showcase
+			</span>
+			<h2
+				class="text-foreground text-4xl font-black tracking-tight uppercase sm:text-5xl md:text-6xl"
+			>
+				/SELECTED WORK
+			</h2>
+			<p class="text-muted-foreground mt-3 text-base">
+				Real-world mobile applications, web platforms, and backend software built by Boitumelo
+				Tubabwene.
+			</p>
+		</div>
 
-    <div class="text-center mt-10">
-      <a href="/projects" aria-label="See more projects">
-        <Button variant="secondary" class="hover:scale-105 transition-transform">See more</Button>
-      </a>
-    </div>
-  </div>
+		<!-- Category Filter Tabs & View All Button Row (Reference 1) -->
+		<div
+			class="border-border/60 mx-auto mb-12 flex max-w-5xl flex-col items-center justify-between gap-6 border-b pb-6 sm:flex-row"
+		>
+			<!-- Filter Pills -->
+			<div class="flex flex-wrap items-center justify-center gap-2">
+				<button
+					onclick={() => (selectedCategory = 'all')}
+					class={`rounded-full px-4 py-2 text-xs font-bold transition-all ${
+						selectedCategory === 'all'
+							? 'bg-primary text-primary-foreground shadow-md'
+							: 'bg-card text-muted-foreground hover:text-foreground hover:bg-muted border-border border'
+					}`}
+				>
+					All Work
+				</button>
+				<button
+					onclick={() => (selectedCategory = 'flutter')}
+					class={`rounded-full px-4 py-2 text-xs font-bold transition-all ${
+						selectedCategory === 'flutter'
+							? 'bg-primary text-primary-foreground shadow-md'
+							: 'bg-card text-muted-foreground hover:text-foreground hover:bg-muted border-border border'
+					}`}
+				>
+					Flutter Apps
+				</button>
+				<button
+					onclick={() => (selectedCategory = 'svelte')}
+					class={`rounded-full px-4 py-2 text-xs font-bold transition-all ${
+						selectedCategory === 'svelte'
+							? 'bg-primary text-primary-foreground shadow-md'
+							: 'bg-card text-muted-foreground hover:text-foreground hover:bg-muted border-border border'
+					}`}
+				>
+					Svelte Web
+				</button>
+				<button
+					onclick={() => (selectedCategory = 'python')}
+					class={`rounded-full px-4 py-2 text-xs font-bold transition-all ${
+						selectedCategory === 'python'
+							? 'bg-primary text-primary-foreground shadow-md'
+							: 'bg-card text-muted-foreground hover:text-foreground hover:bg-muted border-border border'
+					}`}
+				>
+					Python & SQL
+				</button>
+			</div>
+
+			<!-- Top Right Button (Reference 1) -->
+			<a href="/projects">
+				<Button
+					size="sm"
+					variant="secondary"
+					class="glass-pill flex items-center space-x-2 rounded-full transition-transform hover:scale-105"
+				>
+					<span>View All Work</span>
+					<ArrowUpRight size={14} />
+				</Button>
+			</a>
+		</div>
+
+		<!-- Project Cards Grid (Reference 1) -->
+		<div class="mx-auto grid max-w-6xl gap-8 md:grid-cols-2 lg:grid-cols-3">
+			{#each filteredProjects as p (p.id)}
+				<article
+					class="group border-border bg-card hover:border-primary/50 relative flex transform-gpu flex-col overflow-hidden rounded-3xl border shadow-sm transition-all duration-400 hover:-translate-y-2 hover:shadow-2xl"
+					in:fly={{ y: 30, duration: 400 }}
+					out:fade={{ duration: 150 }}
+				>
+					<a href={p.href} class="block flex h-full flex-col">
+						<!-- Image Container with Hover Circle Arrow Button (Reference 1) -->
+						<div class="bg-muted relative h-60 overflow-hidden">
+							<span
+								class="bg-background/90 text-foreground border-border absolute top-4 left-4 z-10 rounded-full border px-3 py-1 text-xs font-bold backdrop-blur-md"
+							>
+								{p.categoryLabel}
+							</span>
+
+							<!-- Floating Circle Arrow Button on Image (Reference 1) -->
+							<div
+								class="bg-background/90 text-foreground group-hover:bg-primary group-hover:text-primary-foreground absolute top-4 right-4 z-10 flex h-10 w-10 items-center justify-center rounded-full shadow-lg transition-all duration-300 group-hover:scale-110"
+							>
+								<ArrowUpRight size={18} />
+							</div>
+
+							<img
+								src={p.image}
+								alt={p.title}
+								class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+								loading="lazy"
+							/>
+						</div>
+
+						<!-- Card Body -->
+						<div class="flex flex-grow flex-col justify-between space-y-4 p-6">
+							<div>
+								<span class="text-primary text-xs font-semibold tracking-wide uppercase"
+									>{p.subtitle}</span
+								>
+								<h3
+									class="text-foreground group-hover:text-primary mt-1 text-xl font-bold transition-colors"
+								>
+									{p.title}
+								</h3>
+								<p class="text-muted-foreground mt-2 text-sm leading-relaxed">{p.description}</p>
+							</div>
+
+							<!-- Tags Footer (Reference 1) -->
+							<div class="border-border/50 flex flex-wrap gap-2 border-t pt-2">
+								{#each p.tags as tag}
+									<span
+										class="bg-muted text-foreground border-border rounded-full border px-2.5 py-1 text-xs font-medium"
+									>
+										{tag}
+									</span>
+								{/each}
+							</div>
+						</div>
+					</a>
+				</article>
+			{/each}
+		</div>
+	</div>
 </section>
-

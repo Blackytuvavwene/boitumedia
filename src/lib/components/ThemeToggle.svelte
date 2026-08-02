@@ -1,73 +1,32 @@
 <script lang="ts">
-	import { Sun, Moon, Monitor } from 'lucide-svelte';
+	import { Sun, Moon } from '@lucide/svelte';
 	import { themeState } from '$lib/stores/theme.svelte';
-	import type { Theme } from '$lib/types/theme';
-	import { createDropdownMenu, melt } from '@melt-ui/svelte';
-	import { fly } from 'svelte/transition';
 
-	const themes: { value: Theme; label: string; icon: any }[] = [
-		{ value: 'light', label: 'Light', icon: Sun },
-		{ value: 'dark', label: 'Dark', icon: Moon },
-		{ value: 'system', label: 'System', icon: Monitor }
-	];
-
-	let isOpen = $state(false);
-
-	const {
-		elements: { menu, item, trigger }
-	} = createDropdownMenu({
-		onOutsideClick: () => {
-			isOpen = false;
-		}
-	});
-
-	function handleThemeChange(theme: Theme) {
-		themeState.setTheme(theme);
-		isOpen = false;
+	function handleToggle() {
+		themeState.toggle();
 	}
 </script>
 
-<div class="relative">
-	<button
-		type="button"
-		use:melt={$trigger}
-		onclick={() => (isOpen = !isOpen)}
-		class="p-2 rounded-lg hover:bg-accent/10 transition-colors duration-200 text-foreground"
-		aria-label="Toggle theme"
+<button
+	type="button"
+	onclick={handleToggle}
+	class="group border-border bg-card/80 hover:border-primary/50 text-foreground relative flex cursor-pointer items-center justify-center rounded-full border p-2.5 shadow-sm backdrop-blur-md transition-all duration-300 hover:scale-105 hover:shadow-md active:scale-95"
+	aria-label={`Switch to ${themeState.resolvedTheme === 'dark' ? 'Light' : 'Dark'} Mode`}
+>
+	<div
+		class="relative flex h-5 w-5 items-center justify-center transition-transform duration-500 group-hover:rotate-45"
 	>
 		{#if themeState.resolvedTheme === 'dark'}
-			<Moon class="w-5 h-5" />
+			<Sun class="h-5 w-5 animate-pulse text-amber-400" />
 		{:else}
-			<Sun class="w-5 h-5" />
+			<Moon class="h-5 w-5 text-indigo-600 dark:text-indigo-400" />
 		{/if}
-	</button>
+	</div>
 
-	{#if isOpen}
-		<div
-			use:melt={$menu}
-			transition:fly={{ y: -10, duration: 200 }}
-			class="absolute right-0 mt-2 w-40 rounded-lg border border-border bg-popover shadow-lg overflow-hidden z-50"
-		>
-			<div class="py-1">
-				{#each themes as theme}
-					{@const Icon = theme.icon}
-					<button
-						type="button"
-						use:melt={$item}
-						onclick={() => handleThemeChange(theme.value)}
-						class="w-full px-4 py-2 text-left text-sm hover:bg-accent/10 transition-colors duration-150 flex items-center gap-3 {themeState.theme ===
-						theme.value
-							? 'bg-accent/20 text-accent-foreground'
-							: 'text-popover-foreground'}"
-					>
-						<Icon class="w-4 h-4" />
-						<span>{theme.label}</span>
-						{#if themeState.theme === theme.value}
-							<span class="ml-auto text-primary">✓</span>
-						{/if}
-					</button>
-				{/each}
-			</div>
-		</div>
-	{/if}
-</div>
+	<!-- Tooltip badge on hover -->
+	<span
+		class="bg-popover text-popover-foreground border-border pointer-events-none absolute -bottom-8 left-1/2 -translate-x-1/2 rounded-md border px-2 py-0.5 text-[10px] font-semibold whitespace-nowrap opacity-0 shadow-md transition-opacity group-hover:opacity-100"
+	>
+		{themeState.resolvedTheme === 'dark' ? 'Light Mode' : 'Dark Mode'}
+	</span>
+</button>

@@ -1,13 +1,14 @@
 <script lang="ts">
-    import HeroComponent from './../../global/ui/HeroComponent.svelte';
-    import { fade } from 'svelte/transition';
+	import HeroComponent from '$lib/components/global/ui/HeroComponent.svelte';
 </script>
 
-<HeroComponent 
-  title={{
-    heading: 'Our',
-    subheading: 'Projects'
-  }}
-  content={'Explore our portfolio of successful digital solutions that have helped businesses transform and grow.'}
-  backText={'Back to Home'}
+<HeroComponent
+	badge="Portfolio Showcase • Flutter, Python, Svelte, SQL"
+	title={{
+		heading: 'Featured',
+		subheading: 'Projects'
+	}}
+	content="Explore real-world mobile applications, web platforms, and backend tools engineered by Boitumelo Tubabwene."
+	showBack={true}
+	backText="Back to Home"
 />

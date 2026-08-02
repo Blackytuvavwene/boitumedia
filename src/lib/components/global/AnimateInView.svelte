@@ -1,70 +1,49 @@
 <script lang="ts">
-    import type { Snippet } from "svelte";
-    import { inview } from "svelte-inview";
-    import type { Options, ObserverEventDetails } from 'svelte-inview';
-    import type { TransitionConfig } from "svelte/transition";
-    import { cubicOut, cubicInOut, quintOut, quintIn } from 'svelte/easing';
+	import type { Snippet } from 'svelte';
+	import { inview } from 'svelte-inview';
+	import type { Options, ObserverEventDetails } from 'svelte-inview';
+	import type { TransitionConfig } from 'svelte/transition';
+	import { useMediaQuery } from '$lib/utils/useMediaQuery';
 
-    // Enhanced easing options
-    const easingOptions = {
-        cubicOut,
-        cubicInOut,
-        quintOut,
-        quintIn
-    };
+	interface Props {
+		children: Snippet;
+		animate?: (node: HTMLElement, params: any) => TransitionConfig;
+		threshold?: number;
+		animationConfig?: Record<string, any>;
+	}
 
-    // Animation configuration type
-    interface AnimationConfig {
-        duration?: number;
-        delay?: number;
-        easing?: keyof typeof easingOptions | ((t: number) => number);
-        [key: string]: any;
-    }
+	let { children, animate, threshold = 0.2, animationConfig = {} }: Props = $props();
 
-    // props
-    let { 
-        children, 
-        animate, 
-        threshold = 0.5,
-        animationConfig = {}
-    } : { 
-        children: Snippet, 
-        animate: (node: HTMLElement, params: any) => TransitionConfig, 
-        threshold?: number,
-        animationConfig?: AnimationConfig
-    } = $props()
+	const isReducedMotion = useMediaQuery('(prefers-reduced-motion: reduce)');
 
-    // Inview options
-    const options: Options = {
-        rootMargin: '-50px',
-        unobserveOnEnter: true,
-    }
+	const options: Options = {
+		rootMargin: '-30px',
+		unobserveOnEnter: true
+	};
 
-    // State to track view and animation
-    let isInView = $state(false);
-    let shouldAnimate = $state(false);
+	let isInView = $state(false);
 
-    // Handle inview changes
-    const handleInViewChange = ({detail}: CustomEvent<ObserverEventDetails>) => {
-        isInView = detail.inView;
-        
-        // Only trigger animation when entering view
-        if (detail.inView) {
-            // Add a small delay to ensure scroll has occurred
-            setTimeout(() => {
-                shouldAnimate = true;
-            }, 50);
-        }
-    }
+	const handleInViewChange = ({ detail }: CustomEvent<ObserverEventDetails>) => {
+		if (detail.inView) {
+			isInView = true;
+		}
+	};
 </script>
 
-<div
-    use:inview={options}
-    oninview_change={handleInViewChange}
- >
-    {#if isInView && shouldAnimate}
-        <div transition:animate={animationConfig}>
-            {@render children()}
-        </div>
-    {/if}
+<div use:inview={options} oninview_change={handleInViewChange}>
+	{#if isInView || $isReducedMotion}
+		{#if animate && !$isReducedMotion}
+			<div transition:animate={animationConfig}>
+				{@render children()}
+			</div>
+		{:else}
+			<div>
+				{@render children()}
+			</div>
+		{/if}
+	{:else}
+		<div class="opacity-0">
+			{@render children()}
+		</div>
+	{/if}
 </div>

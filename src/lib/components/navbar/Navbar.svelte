@@ -1,140 +1,165 @@
 <script lang="ts">
-	import { socialLinks } from '$lib/utils/links/social.links.js';
-    import { createDropdownMenu, melt} from '@melt-ui/svelte';
-    import { Menu, Cross, X } from 'lucide-svelte'
-	import { fly } from 'svelte/transition';
-    import { page } from '$app/state';
+	import { useClickOutside } from '@ariefsn/svelte-use';
+	import { Menu, X, ArrowUpRight } from '@lucide/svelte';
+	import { fly, fade } from 'svelte/transition';
+	import { page } from '$app/state';
 	import ThemeToggle from '$lib/components/ThemeToggle.svelte';
+	import Button from '$lib/components/global/ui/Button.svelte';
 
-    let isScrolled = $state(false)
-    let isMenuOpen = $state(false)
-    let scrollHeight = $state(0)
+	let y = $state(0);
+	const isScrolled = $derived(y > 40);
 
-    // is link active
-    let isActive = $state(false)
+	let isMenuOpen = $state(false);
+	let headerElement = $state<HTMLElement | null>(null);
 
-    // check if link is active
-    $effect(() => {
-        isActive = navLinks.some(link => link.path === page
-.url.pathname
-        )
-    })
+	// Use Svelte 5 composable hook from @ariefsn/svelte-use to close menu on outside clicks
+	useClickOutside(
+		() => headerElement,
+		() => {
+			if (isMenuOpen) {
+				isMenuOpen = false;
+			}
+		}
+	);
 
+	function closeMenu() {
+		isMenuOpen = false;
+	}
 
-    // elements from melt ui to use in our dropdown menu
-    const { elements : { menu, item, trigger} } = createDropdownMenu({
-        onOutsideClick: () => {
-            isMenuOpen = false
-        }
-    })
-
-    // nav links
-    let navLinks = [
-        {
-            name: 'Home',
-            path: '/',
-            id: 1
-        },
-        {
-            name: 'About',
-            path: '/about',
-            id: 2
-        },
-        {
-            name: 'Projects',
-            path: '/projects',
-            id: 3
-        },
-        {
-            name: 'Contact',
-            path: '/contact',
-            id: 4
-        }
-    ]
-
-    // menu items
-    const menuDivs = [
-        1,
-        2,
-        3
-    ]
-
-    // control isScrolled state
-    $effect(() => {
-        isScrolled = scrollHeight > 100
-    })
-
-    
+	const navLinks = [
+		{ name: 'Home', path: '/' },
+		{ name: 'About', path: '/about' },
+		{ name: 'Projects', path: '/projects' },
+		{ name: 'Contact', path: '/contact' }
+	];
 </script>
 
-<svelte:window bind:scrollY={scrollHeight}/>
+<svelte:window bind:scrollY={y} />
 
-<header class="fixed top-0 left-0 right-0 w-full z-50 {isScrolled ? " backdrop-blur-md " : "bg-transparent"} transition-colors duration-300 ease-in-out border-b border-border bg-background/80">
-    <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-        <a href="/" aria-label="Home" class="">
-            <span class="text-2xl font-bold text-white">
-                Boitu
-            </span><span class="font-bold text-white text-2xl">
-                Media 
-            </span>
-        </a>
-        <!-- Desktop menu -->
-        <ul class="items-center flex-grow hidden justify-center space-x-8 md:flex">
-            {#each navLinks as navLink}
-            <li>
-                <a href={navLink.path} class="text-foreground hover:text-primary transition-colors duration-300 relative group px-4">
-                    {navLink.name}
-                </a>
-            </li>
-            {/each}
-        </ul>
+<header
+	bind:this={headerElement}
+	class="fixed top-0 right-0 left-0 z-50 w-full border-b transition-all duration-300 ease-in-out {isScrolled
+		? 'glass-panel border-border/80 py-3 shadow-md'
+		: 'bg-background/80 border-transparent py-4 backdrop-blur-md'}"
+>
+	<nav
+		class="container mx-auto flex items-center justify-between px-6"
+		aria-label="Main Navigation"
+	>
+		<!-- Brand Logo -->
+		<a
+			href="/"
+			onclick={closeMenu}
+			aria-label="Boitumelo Tubabwene Home"
+			class="group flex items-center space-x-1"
+		>
+			<span class="text-foreground group-hover:text-primary text-2xl font-black transition-colors">
+				Boitu
+			</span>
+			<span class="text-primary text-2xl font-black"> Media </span>
+		</a>
 
-		<!-- Desktop actions -->
-		<div class="hidden md:flex items-center gap-4">
+		<!-- Desktop Links -->
+		<ul class="hidden items-center space-x-8 md:flex">
+			{#each navLinks as link (link.path)}
+				{@const isActive = page.url.pathname === link.path}
+				<li>
+					<a
+						href={link.path}
+						class="relative px-2 py-1 text-sm font-semibold transition-colors duration-200 {isActive
+							? 'text-primary font-bold'
+							: 'text-foreground/80 hover:text-primary'}"
+					>
+						{link.name}
+						{#if isActive}
+							<span
+								class="bg-primary absolute right-0 bottom-0 left-0 h-0.5 rounded-full"
+								in:fly={{ y: 2, duration: 150 }}
+							></span>
+						{/if}
+					</a>
+				</li>
+			{/each}
+		</ul>
+
+		<!-- Desktop Actions: Theme Toggle & Get a Quote Button -->
+		<div class="hidden items-center gap-4 md:flex">
 			<ThemeToggle />
-			<button class="btn btn-primary btn-md text-primary-content">
-				Get a quote
-			</button>
+			<a href="/contact">
+				<Button
+					size="md"
+					class="flex items-center space-x-1.5 shadow-md transition-transform hover:scale-105"
+				>
+					<span>Get a Quote</span>
+					<ArrowUpRight size={16} />
+				</Button>
+			</a>
 		</div>
 
-        <!-- Mobile menu button -->
-        <button 
-        type="button"
-        use:melt={$trigger}
-        class="md:hidden btn-md " onclick={() => isMenuOpen = !isMenuOpen}>
-            <!-- <span class="sr-only">Open main menu</span> -->
-            {#if isMenuOpen}
-                <X color="white"/>
-            {:else}
-                <Menu color="white"/>
-            {/if}
-        </button>
+		<!-- Mobile Menu Toggle Button -->
+		<div class="flex items-center gap-3 md:hidden">
+			<ThemeToggle />
+			<button
+				type="button"
+				aria-label={isMenuOpen ? 'Close Navigation Menu' : 'Open Navigation Menu'}
+				class="text-foreground bg-muted/60 hover:bg-muted focus-visible:ring-primary border-border cursor-pointer rounded-xl border p-2 focus-visible:ring-2 focus-visible:outline-none"
+				onclick={() => (isMenuOpen = !isMenuOpen)}
+			>
+				{#if isMenuOpen}
+					<X size={22} />
+				{:else}
+					<Menu size={22} />
+				{/if}
+			</button>
+		</div>
+	</nav>
 
-        <!-- Mobile Navigation Dropdown -->
-         {#if isMenuOpen}
-          <section 
-          use:melt={$menu}
-          transition:fly={{y: -50 , duration: 300,}}
-          class="md:hidden container mx-auto px-4 py-4 bg-background/95 backdrop-blur-md w-full overflow-hidden transition-all duration-300 ease-in-out max-h-screen opacity-100">
-            <ul class="flex flex-col divide-y divide-border px-4">
-                <div class="container mx-auto px-4 py-4 bg-background/95 backdrop-blur-md border-b border-border">
-                    {#each navLinks as navLink}
-                      <li class="flex flex-col gap-2">
-                        <a href={navLink.path} use:melt={$item} class="text-foreground hover:text-primary py-2">
-                          {navLink.name}
-                        </a>
-                      </li>
-                    {/each}
-                </div>
-            </ul>
-			<!-- Theme toggle and quote button -->
-			<div class="flex items-center justify-between px-4 py-3 border-t border-border">
-				<ThemeToggle />
-				<a href="#contact" class="btn btn-primary btn-sm">
-					Get a quote
+	<!-- Mobile Dropdown Navigation Drawer -->
+	{#if isMenuOpen}
+		<!-- Backdrop Overlay -->
+		<button
+			type="button"
+			tabindex="-1"
+			aria-label="Close menu backdrop"
+			class="fixed inset-0 top-[65px] z-40 h-full w-full cursor-default border-none bg-black/60 p-0 backdrop-blur-sm md:hidden"
+			onclick={closeMenu}
+			in:fade={{ duration: 200 }}
+		></button>
+
+		<!-- Dropdown Panel -->
+		<div
+			transition:fly={{ y: -15, duration: 250 }}
+			class="bg-card/95 border-border fixed top-[65px] right-0 left-0 z-50 space-y-5 border-b p-6 shadow-2xl backdrop-blur-2xl md:hidden"
+		>
+			<ul class="flex flex-col space-y-2">
+				{#each navLinks as link (link.path)}
+					{@const isActive = page.url.pathname === link.path}
+					<li>
+						<a
+							href={link.path}
+							onclick={closeMenu}
+							class="flex items-center justify-between rounded-xl px-4 py-3 text-base font-semibold transition-colors {isActive
+								? 'bg-primary/10 text-primary border-primary/20 border font-bold'
+								: 'text-foreground hover:bg-muted'}"
+						>
+							<span>{link.name}</span>
+							{#if isActive}
+								<span class="bg-primary h-2 w-2 animate-pulse rounded-full"></span>
+							{/if}
+						</a>
+					</li>
+				{/each}
+			</ul>
+
+			<div class="border-border flex items-center justify-between border-t pt-4">
+				<span class="text-muted-foreground text-xs font-semibold">Boitumelo Tubabwene</span>
+				<a href="/contact" onclick={closeMenu}>
+					<Button size="sm" class="flex items-center space-x-1.5 shadow-md">
+						<span>Get a Quote</span>
+						<ArrowUpRight size={14} />
+					</Button>
 				</a>
 			</div>
-          </section>
-         {/if}
-    </nav>
+		</div>
+	{/if}
 </header>
