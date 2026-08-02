@@ -20,6 +20,13 @@
 </script>
 
 <svelte:head>
+	<link
+		rel="preload"
+		as="image"
+		href="/developer_portrait.jpg"
+		fetchpriority="high"
+		type="image/jpeg"
+	/>
 	<script>
 		(function () {
 			try {

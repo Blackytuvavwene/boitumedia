@@ -339,6 +339,9 @@
 						<img
 							src="/developer_portrait.jpg"
 							alt="Boitumelo Tubabwene - Self-Taught Developer"
+							loading="eager"
+							fetchpriority="high"
+							decoding="async"
 							class="h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
 						/>
 						<div

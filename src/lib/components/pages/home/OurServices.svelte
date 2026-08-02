@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Smartphone, Code, Terminal, Database } from '@lucide/svelte';
-	import { fly } from 'svelte/transition';
+	import { inview } from 'svelte-inview';
 	import { HomePageStrings } from '$lib/utils/strings';
 	import Button from '$lib/components/global/ui/Button.svelte';
 
@@ -30,6 +30,9 @@
 			ariaLabel: HomePageStrings.services.DATABASE_SQL.ariaLabel
 		}
 	];
+
+	let isHeaderInView = $state(false);
+	let isCardsInView = $state(false);
 </script>
 
 <section
@@ -37,9 +40,18 @@
 	aria-labelledby="services-heading"
 >
 	<div class="container mx-auto px-6">
-		<div class="mx-auto mb-16 max-w-3xl text-center">
+		<!-- Section Header with Smooth CSS Scroll Slide-In -->
+		<div
+			use:inview={{ rootMargin: '0px 0px -50px 0px', unobserveOnEnter: true }}
+			oninview_change={({ detail }) => {
+				if (detail.inView) isHeaderInView = true;
+			}}
+			class="mx-auto mb-16 max-w-3xl transform text-center transition-all duration-700 ease-out {isHeaderInView
+				? 'translate-y-0 opacity-100'
+				: 'translate-y-10 opacity-0'}"
+		>
 			<span
-				class="bg-primary/10 text-primary border-primary/20 mb-4 inline-block rounded-full border px-3 py-1 text-xs font-semibold"
+				class="bg-primary/10 text-primary border-primary/20 mb-4 inline-block rounded-full border px-3 py-1 text-xs font-semibold shadow-sm"
 			>
 				Capabilities & Stack
 			</span>
@@ -49,46 +61,62 @@
 			>
 				{HomePageStrings.SERVICES_TITLE}
 			</h2>
-			<p class="text-muted-foreground mt-4 text-base">
+			<p class="text-muted-foreground mt-4 text-base leading-relaxed">
 				Specialized development skills and solutions crafted for performance, accessibility, and
 				clean architecture.
 			</p>
 		</div>
 
-		<ul class="mx-auto grid max-w-5xl gap-8 md:grid-cols-2" aria-label="Core Stack">
-			{#each services as service, index (service.title)}
-				<li
-					class="group bg-card border-border hover:border-primary/50 relative flex flex-col gap-5 rounded-2xl border p-8 shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl"
-					in:fly={{ y: 24, duration: 400, delay: index * 100 }}
-					aria-label={service.ariaLabel}
-				>
-					<div
-						class="from-primary pointer-events-none absolute inset-x-0 top-0 h-1 rounded-t-2xl bg-gradient-to-r via-cyan-400 to-indigo-500 opacity-0 transition-opacity group-hover:opacity-100"
-					></div>
-					<div
-						class="bg-primary/10 text-primary group-hover:bg-primary/20 flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl transition-colors"
+		<!-- Services Grid with Staggered Scroll Slide-In -->
+		<div
+			use:inview={{ rootMargin: '0px 0px -60px 0px', unobserveOnEnter: true }}
+			oninview_change={({ detail }) => {
+				if (detail.inView) isCardsInView = true;
+			}}
+		>
+			<ul class="mx-auto grid max-w-5xl gap-8 md:grid-cols-2" aria-label="Core Stack">
+				{#each services as service, index (service.title)}
+					<li
+						class="group bg-card border-border hover:border-primary/50 relative flex transform flex-col gap-5 rounded-2xl border p-8 shadow-sm transition-all duration-700 ease-out hover:-translate-y-2 hover:shadow-2xl {isCardsInView
+							? 'translate-y-0 opacity-100'
+							: 'translate-y-12 opacity-0'}"
+						style="transition-delay: {index * 130}ms;"
+						aria-label={service.ariaLabel}
 					>
-						<service.icon size={26} />
-					</div>
-
-					<div class="space-y-2">
-						<h3 class="text-foreground text-2xl font-bold" id={`service-${index}`}>
-							{service.title}
-						</h3>
-						<p
-							class="text-muted-foreground text-sm leading-relaxed"
-							aria-labelledby={`service-${index}`}
+						<div
+							class="from-primary pointer-events-none absolute inset-x-0 top-0 h-1 rounded-t-2xl bg-gradient-to-r via-cyan-400 to-indigo-500 opacity-0 transition-opacity group-hover:opacity-100"
+						></div>
+						<div
+							class="bg-primary/10 text-primary group-hover:bg-primary/20 flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl shadow-sm transition-colors"
 						>
-							{service.description}
-						</p>
-					</div>
-				</li>
-			{/each}
-		</ul>
+							<service.icon size={26} />
+						</div>
 
-		<div class="mt-12 text-center">
+						<div class="space-y-2">
+							<h3 class="text-foreground text-2xl font-bold" id={`service-${index}`}>
+								{service.title}
+							</h3>
+							<p
+								class="text-muted-foreground text-sm leading-relaxed"
+								aria-labelledby={`service-${index}`}
+							>
+								{service.description}
+							</p>
+						</div>
+					</li>
+				{/each}
+			</ul>
+		</div>
+
+		<div
+			class="mt-12 transform text-center transition-all delay-500 duration-700 ease-out {isCardsInView
+				? 'translate-y-0 opacity-100'
+				: 'translate-y-6 opacity-0'}"
+		>
 			<a href="/projects">
-				<Button size="lg" class="transition-transform hover:scale-105">Explore All Projects</Button>
+				<Button size="lg" class="shadow-md transition-transform hover:scale-105">
+					Explore All Projects
+				</Button>
 			</a>
 		</div>
 	</div>
