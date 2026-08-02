@@ -55,5 +55,8 @@
 		"motion-sv": "^0.1.13",
 		"svelte-inview": "^4.0.4",
 		"tailwind-merge": "^3.6.0"
+	},
+	"engines": {
+		"node": ">=22.x.x"
 	}
 }
