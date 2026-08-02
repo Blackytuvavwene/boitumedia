@@ -24,6 +24,7 @@
 		"@sveltejs/vite-plugin-svelte": "^7.2.0",
 		"@tailwindcss/postcss": "^4.3.3",
 		"@tailwindcss/typography": "^0.5.20",
+		"@tailwindcss/vite": "^4.3.3",
 		"@types/eslint": "^9.6.1",
 		"daisyui": "^5.7.13",
 		"eslint": "^10.8.0",
