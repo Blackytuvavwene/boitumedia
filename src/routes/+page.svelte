@@ -15,7 +15,11 @@
 			addressCountry: 'BW'
 		},
 		knowsAbout: ['Flutter', 'Python', 'Svelte', 'SvelteKit', 'SQL', 'IT Support'],
-		sameAs: ['https://github.com/Blackytuvavwene']
+		sameAs: [
+			'https://github.com/Blackytuvavwene',
+			'https://x.com/Blackytubabwene',
+			'https://www.facebook.com/boitumelo.blacky'
+		]
 	};
 </script>
 

@@ -35,8 +35,8 @@
         <div class="flex flex-col items-center justify-center h-full w-full">
             <img src="/pic.png" alt="me" class="p-4 w-1/2 h-1/2 rounded-full ">
             <div class="p-2">
-                <p class="text-lg font-bold">Contact : <a href="tel:+26773449299" class="text-center text-blue-600 hover:border-2 hover:bg-white
-                  hover:rounded-lg hover:p-2 hover:-translate-x-4  ">+267 73 449 299</a></p>
+                <p class="text-lg font-bold">Contact : <a href="tel:+26777465201" class="text-center text-blue-600 hover:border-2 hover:bg-white
+                  hover:rounded-lg hover:p-2 hover:-translate-x-4  ">+267 77 465 201</a></p>
             </div>
         </div>
 

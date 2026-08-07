@@ -32,7 +32,11 @@
 						url: 'https://boitumedia.xyz',
 						logo: 'https://boitumedia.xyz/favicon.png',
 						description: description,
-						sameAs: ['https://github.com', 'https://linkedin.com', 'https://twitter.com']
+						sameAs: [
+							'https://github.com/Blackytuvavwene',
+							'https://x.com/Blackytubabwene',
+							'https://www.facebook.com/boitumelo.blacky'
+						]
 					},
 					{
 						'@context': 'https://schema.org',

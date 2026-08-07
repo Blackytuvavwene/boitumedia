@@ -15,7 +15,7 @@
 		Award,
 		Mail
 	} from '@lucide/svelte';
-	import { SiGithub, SiWhatsapp } from '@icons-pack/svelte-simple-icons';
+	import { SiGithub, SiFacebook, SiX, SiWhatsapp } from '@icons-pack/svelte-simple-icons';
 
 	let canvasEl: HTMLCanvasElement | undefined = $state();
 	const isReducedMotion = useMediaQuery('(prefers-reduced-motion: reduce)');
@@ -179,8 +179,10 @@
 
 	const socialPills = [
 		{ name: 'GitHub', href: 'https://github.com/Blackytuvavwene', icon: SiGithub },
+		{ name: 'X', href: 'https://x.com/Blackytubabwene', icon: SiX },
+		{ name: 'Facebook', href: 'https://www.facebook.com/boitumelo.blacky', icon: SiFacebook },
 		{ name: 'Email', href: 'mailto:hello@boitumedia.xyz', icon: Mail },
-		{ name: 'WhatsApp', href: 'https://whatsapp.com', icon: SiWhatsapp }
+		{ name: 'WhatsApp', href: 'https://wa.me/26777465201', icon: SiWhatsapp }
 	];
 </script>
 

@@ -4,9 +4,9 @@
 
 	const socialLinks = [
 		{ name: 'GitHub', icon: SiGithub, href: 'https://github.com/Blackytuvavwene' },
-		{ name: 'Facebook', icon: SiFacebook, href: 'https://facebook.com' },
-		{ name: 'X (Twitter)', icon: SiX, href: 'https://x.com' },
-		{ name: 'WhatsApp', icon: SiWhatsapp, href: 'https://whatsapp.com' }
+		{ name: 'Facebook', icon: SiFacebook, href: 'https://www.facebook.com/boitumelo.blacky' },
+		{ name: 'X (Twitter)', icon: SiX, href: 'https://x.com/Blackytubabwene' },
+		{ name: 'WhatsApp', icon: SiWhatsapp, href: 'https://wa.me/26777465201' }
 	];
 
 	const moreInfo = [

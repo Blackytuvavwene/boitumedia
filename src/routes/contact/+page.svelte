@@ -81,6 +81,26 @@
 								</a>
 							</div>
 						</div>
+						<div class="flex items-start space-x-4">
+							<div
+								class="bg-primary/10 text-primary flex h-10 w-10 shrink-0 items-center justify-center rounded-lg"
+							>
+								<Phone size={20} />
+							</div>
+							<div>
+								<div class="text-muted-foreground text-xs font-semibold tracking-wider uppercase">
+									Phone & WhatsApp
+								</div>
+								<a
+									href="https://wa.me/26777465201"
+									target="_blank"
+									rel="noopener noreferrer"
+									class="text-foreground hover:text-primary font-medium transition-colors"
+								>
+									+267 77 465 201
+								</a>
+							</div>
+						</div>
 
 						<div class="flex items-start space-x-4">
 							<div

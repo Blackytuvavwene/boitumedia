@@ -13,7 +13,7 @@ export const socialLinks: SocialLinkProp[] = [
 	{
 		props: {
 			name: 'Twitter',
-			path: 'https://twitter.com/Blackytubabwene',
+			path: 'https://x.com/Blackytubabwene',
 			id: 2
 		},
 		icon: './twitter.svg'
