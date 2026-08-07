@@ -1,4 +1,5 @@
 import type { RequestHandler } from './$types';
+import { projects } from '$lib/data/projects';
 
 export const GET: RequestHandler = async () => {
 	const siteUrl = 'https://boitumedia.xyz';
@@ -6,9 +7,7 @@ export const GET: RequestHandler = async () => {
 		'',
 		'/about',
 		'/projects',
-		'/projects/1',
-		'/projects/2',
-		'/projects/3',
+		...projects.map((p) => `/projects/${p.id}`),
 		'/contact'
 	];
 

@@ -15,102 +15,13 @@
 	import { SiGithub } from '@icons-pack/svelte-simple-icons';
 	import Button from '$lib/components/global/ui/Button.svelte';
 
-	interface Project {
-		id: number;
-		title: string;
-		description: string;
-		image: string;
-		tags: string[];
-		category: string;
-		longDescription: string;
-		challenges: string;
-		results: string;
-		features: string[];
-		technologies: string[];
-		liveLink: string;
-		githubLink: string;
-	}
+	import { projects, type Project } from '$lib/data/projects';
 
 	const categories = [
 		{ id: 'all', label: 'All Projects' },
 		{ id: 'flutter', label: 'Flutter Mobile' },
 		{ id: 'svelte', label: 'Svelte Web' },
 		{ id: 'python', label: 'Python & SQL' }
-	];
-
-	const projects: Project[] = [
-		{
-			id: 1,
-			title: 'FinTech Mobile Pay App',
-			description:
-				'Native cross-platform mobile wallet built with Flutter & Dart featuring biometric security and instant transfers.',
-			image: '/placeholder.svg?height=400&width=600',
-			tags: ['Flutter', 'Dart', 'Firebase', 'Stripe'],
-			category: 'flutter',
-			longDescription:
-				'A modern mobile payment application built with Flutter and Dart for seamless iOS and Android cross-platform functionality.',
-			challenges:
-				'Optimizing state management and secure local biometric storage across different mobile operating systems.',
-			results:
-				'Achieved a 60fps UI render rate and fast response times across mid-tier and flagship mobile devices.',
-			features: [
-				'Biometric login',
-				'QR Code payments',
-				'Real-time balance updates',
-				'Transaction history',
-				'Push alerts'
-			],
-			technologies: ['Flutter', 'Dart', 'Firebase Auth', 'Cloud Firestore', 'Stripe API'],
-			liveLink: 'https://example.com',
-			githubLink: 'https://github.com/Blackytuvavwene'
-		},
-		{
-			id: 2,
-			title: 'Boitumedia SvelteKit Portfolio',
-			description:
-				'High-performance digital portfolio platform built with Svelte 5 runes, SvelteKit, and circuit trace canvas animations.',
-			image: '/placeholder.svg?height=400&width=600',
-			tags: ['Svelte 5', 'SvelteKit', 'TypeScript', 'Tailwind'],
-			category: 'svelte',
-			longDescription:
-				'Custom developer portfolio designed with modern glassmorphic aesthetics, animated electronic circuit canvas, and full accessibility.',
-			challenges:
-				'Integrating real-time HTML5 Canvas animation loops smoothly alongside Svelte 5 rune state.',
-			results: '100/100 Lighthouse performance score with 0 Svelte diagnostics errors.',
-			features: [
-				'Circuit canvas background',
-				'Svelte 5 runes',
-				'Dark/Light mode switch',
-				'Responsive layout',
-				'SEO optimization'
-			],
-			technologies: ['Svelte 5', 'SvelteKit', 'TypeScript', 'HTML5 Canvas', 'Tailwind CSS'],
-			liveLink: 'https://boitumedia.xyz',
-			githubLink: 'https://github.com/Blackytuvavwene'
-		},
-		{
-			id: 3,
-			title: 'Database Engine & API Automation',
-			description:
-				'Python REST API backend powered by PostgreSQL database pooling, automated task scheduling, and SQL query optimization.',
-			image: '/placeholder.svg?height=400&width=600',
-			tags: ['Python', 'FastAPI', 'PostgreSQL', 'SQL'],
-			category: 'python',
-			longDescription:
-				'Backend API system designed to process incoming data payloads and execute optimized SQL database queries with connection pooling.',
-			challenges: 'Preventing database connection bottlenecks under concurrent request traffic.',
-			results: 'Reduced query execution latency by 45% using indexed SQL schemas.',
-			features: [
-				'Async REST API endpoints',
-				'PostgreSQL pooling',
-				'SQL indexing',
-				'JSON Schema validation',
-				'Automated logs'
-			],
-			technologies: ['Python 3', 'FastAPI', 'PostgreSQL', 'SQLAlchemy', 'Docker'],
-			liveLink: 'https://example.com',
-			githubLink: 'https://github.com/Blackytuvavwene'
-		}
 	];
 
 	let selectedCategory = $state('all');
@@ -237,11 +148,20 @@
 				</div>
 
 				<div class="space-y-6">
-					<img
-						src={selectedProject.image}
-						alt={selectedProject.title}
-						class="border-border h-64 w-full rounded-2xl border object-cover"
-					/>
+					<div class="grid gap-4 {selectedProject.mobileImage ? 'md:grid-cols-3' : 'grid-cols-1'}">
+						<img
+							src={selectedProject.image}
+							alt={`${selectedProject.title} Desktop View`}
+							class="border-border h-64 w-full rounded-2xl border object-cover {selectedProject.mobileImage ? 'md:col-span-2' : ''}"
+						/>
+						{#if selectedProject.mobileImage}
+							<img
+								src={selectedProject.mobileImage}
+								alt={`${selectedProject.title} Mobile View`}
+								class="border-border h-64 w-full rounded-2xl border object-cover"
+							/>
+						{/if}
+					</div>
 					<p use:melt={$description} class="text-muted-foreground leading-relaxed">
 						{selectedProject.longDescription}
 					</p>
@@ -259,7 +179,15 @@
 						</div>
 					</div>
 
-					<div class="border-border flex items-center space-x-4 border-t pt-4">
+					<div class="border-border flex flex-wrap items-center gap-3 border-t pt-4">
+						{#if selectedProject.liveLink}
+							<a href={selectedProject.liveLink} target="_blank" rel="noopener noreferrer">
+								<Button size="md" class="flex items-center space-x-2">
+									<span>Live Site</span>
+									<ExternalLink size={16} />
+								</Button>
+							</a>
+						{/if}
 						<a href={selectedProject.githubLink} target="_blank" rel="noopener noreferrer">
 							<Button variant="secondary" size="md" class="flex items-center space-x-2">
 								<span>Source Code</span>

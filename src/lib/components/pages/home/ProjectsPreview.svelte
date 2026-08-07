@@ -3,63 +3,23 @@
 	import Button from '$lib/components/global/ui/Button.svelte';
 	import { ArrowUpRight } from '@lucide/svelte';
 
-	type Project = {
-		id: number;
-		title: string;
-		subtitle: string;
-		description: string;
-		image: string;
-		category: string;
-		categoryLabel: string;
-		tags: string[];
-		href: string;
-	};
+	import { projects } from '$lib/data/projects';
 
 	let selectedCategory = $state('all');
 	let isHeaderInView = $state(false);
 	let isCardsInView = $state(false);
 
-	const projects: Project[] = [
-		{
-			id: 1,
-			title: 'FinTech Wallet & Mobile Pay',
-			subtitle: 'Flutter Mobile Application',
-			description:
-				'Cross-platform mobile wallet built with Flutter & Dart featuring biometric security and real-time transaction tracking.',
-			image: '/placeholder.svg?height=400&width=600',
-			category: 'flutter',
-			categoryLabel: 'Flutter App',
-			tags: ['Flutter', 'Dart', 'Firebase', 'REST API'],
-			href: '/projects/1'
-		},
-		{
-			id: 2,
-			title: 'Boitumedia Platform',
-			subtitle: 'SvelteKit Web Application',
-			description:
-				'Ultra-fast, high-contrast digital portfolio and client portal built with Svelte 5 runes, SvelteKit, and Tailwind CSS.',
-			image: '/placeholder.svg?height=400&width=600',
-			category: 'svelte',
-			categoryLabel: 'Svelte Web',
-			tags: ['Svelte 5', 'SvelteKit', 'TypeScript', 'Tailwind'],
-			href: '/projects/2'
-		},
-		{
-			id: 3,
-			title: 'Database & API Engine',
-			subtitle: 'Python & SQL Microservice',
-			description:
-				'Scalable backend API engine with PostgreSQL database connection pools, authentication, and automated data processing.',
-			image: '/placeholder.svg?height=400&width=600',
-			category: 'python',
-			categoryLabel: 'Python & SQL',
-			tags: ['Python', 'FastAPI', 'PostgreSQL', 'SQL'],
-			href: '/projects/3'
-		}
-	];
+	const previewProjects = $derived(
+		projects.map((p) => ({
+			...p,
+			href: `/projects/${p.id}`
+		}))
+	);
 
 	const filteredProjects = $derived(
-		selectedCategory === 'all' ? projects : projects.filter((p) => p.category === selectedCategory)
+		selectedCategory === 'all'
+			? previewProjects
+			: previewProjects.filter((p) => p.category === selectedCategory)
 	);
 </script>
 

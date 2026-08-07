@@ -6,83 +6,7 @@
 	import { SiGithub } from '@icons-pack/svelte-simple-icons';
 	import { fly } from 'svelte/transition';
 
-	// Projects data source
-	const projects = [
-		{
-			id: '1',
-			title: 'E-commerce Platform',
-			description:
-				'A full-stack e-commerce solution with advanced product filtering, user authentication, and payment processing.',
-			image: '/placeholder.svg?height=400&width=600',
-			tags: ['React', 'Node.js', 'MongoDB', 'Stripe'],
-			category: 'web',
-			longDescription:
-				'This comprehensive e-commerce platform was built for a retail client looking to expand their online presence. The solution includes advanced product filtering, user authentication, shopping cart functionality, and secure payment processing through Stripe.',
-			challenges:
-				'Implementing a real-time inventory system that could handle high traffic volumes during sales events was a significant challenge. We solved this by implementing a caching layer and optimizing database queries.',
-			results:
-				"The platform increased the client's online sales by 150% in the first quarter after launch, with a 30% improvement in conversion rates.",
-			features: [
-				'Advanced product filtering and search',
-				'User authentication and profiles',
-				'Shopping cart and wishlist',
-				'Secure payment processing',
-				'Order tracking and history',
-				'Admin dashboard with analytics'
-			],
-			technologies: ['React', 'Node.js', 'Express', 'MongoDB', 'Stripe API', 'AWS S3', 'Redis'],
-			liveLink: 'https://example.com',
-			githubLink: 'https://github.com'
-		},
-		{
-			id: '2',
-			title: 'Health & Fitness App',
-			description:
-				'A mobile application for tracking workouts, nutrition, and health metrics with personalized recommendations.',
-			image: '/placeholder.svg?height=400&width=600',
-			tags: ['React Native', 'Firebase', 'Machine Learning'],
-			category: 'mobile',
-			longDescription:
-				'This health and fitness mobile application helps users track their workouts, nutrition, and health metrics. It provides personalized recommendations based on user goals and progress.',
-			challenges:
-				'Developing an algorithm that could provide personalized workout and nutrition recommendations based on user data was complex.',
-			results:
-				'The app has maintained a 4.8/5 star rating on app stores with over 100,000 downloads.',
-			features: [
-				'Personalized workout plans',
-				'Nutrition tracking and meal suggestions',
-				'Progress tracking with charts and photos',
-				'Social sharing and community features'
-			],
-			technologies: ['React Native', 'Firebase', 'TensorFlow Lite', 'Apple HealthKit'],
-			liveLink: 'https://example.com',
-			githubLink: 'https://github.com'
-		},
-		{
-			id: '3',
-			title: 'Real Estate Portal',
-			description:
-				'A web application for property listings with virtual tours, mortgage calculator, and agent communication tools.',
-			image: '/placeholder.svg?height=400&width=600',
-			tags: ['Next.js', 'PostgreSQL', 'Google Maps API'],
-			category: 'web',
-			longDescription:
-				'This real estate portal allows users to browse property listings, take virtual tours, calculate mortgage payments, and communicate with agents.',
-			challenges:
-				'Implementing the virtual tour feature with 360-degree views while maintaining fast load times required significant optimization.',
-			results:
-				'The portal facilitated over $15 million in property transactions within its first year.',
-			features: [
-				'Property search with advanced filters',
-				'Virtual tours with 360° views',
-				'Mortgage calculator',
-				'Agent-client messaging system'
-			],
-			technologies: ['Next.js', 'PostgreSQL', 'Google Maps API', 'Three.js', 'AWS'],
-			liveLink: 'https://example.com',
-			githubLink: 'https://github.com'
-		}
-	];
+	import { projects } from '$lib/data/projects';
 
 	const projectId = $derived(page.params.id);
 	const project = $derived(projects.find((p) => p.id === projectId) || projects[0]);
@@ -134,13 +58,24 @@
 				</p>
 			</div>
 
-			<!-- Project Hero Image -->
-			<div class="border-border bg-card relative overflow-hidden rounded-2xl border shadow-lg">
-				<img
-					src={project.image}
-					alt={project.title}
-					class="h-80 w-full object-cover md:h-[420px]"
-				/>
+			<!-- Project Hero Image(s) -->
+			<div class="grid gap-4 {project.mobileImage ? 'md:grid-cols-3' : 'grid-cols-1'}">
+				<div class="border-border bg-card relative overflow-hidden rounded-2xl border shadow-lg {project.mobileImage ? 'md:col-span-2' : ''}">
+					<img
+						src={project.image}
+						alt={`${project.title} Desktop View`}
+						class="h-80 w-full object-cover md:h-[420px]"
+					/>
+				</div>
+				{#if project.mobileImage}
+					<div class="border-border bg-card relative overflow-hidden rounded-2xl border shadow-lg">
+						<img
+							src={project.mobileImage}
+							alt={`${project.title} Mobile View`}
+							class="h-80 w-full object-cover md:h-[420px]"
+						/>
+					</div>
+				{/if}
 			</div>
 
 			<!-- Project Details Grid -->
