@@ -31,6 +31,7 @@
 	];
 
 	const {
+		elements: { root },
 		elements: { content, item, trigger },
 		helpers: { isSelected }
 	} = createAccordion({
@@ -39,7 +40,7 @@
 	});
 </script>
 
-<div class="mx-auto w-full max-w-3xl space-y-4">
+<div use:melt={$root} class="mx-auto w-full max-w-3xl space-y-4">
 	{#each faqs as faq (faq.id)}
 		<div
 			use:melt={$item(faq.id)}

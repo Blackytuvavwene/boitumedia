@@ -64,6 +64,9 @@
 					<img
 						src={project.image}
 						alt={`${project.title} Desktop View`}
+						loading="eager"
+						decoding="async"
+						fetchpriority="high"
 						class="h-80 w-full object-cover md:h-[420px]"
 					/>
 				</div>
@@ -72,6 +75,8 @@
 						<img
 							src={project.mobileImage}
 							alt={`${project.title} Mobile View`}
+							loading="lazy"
+							decoding="async"
 							class="h-80 w-full object-cover md:h-[420px]"
 						/>
 					</div>

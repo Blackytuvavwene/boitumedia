@@ -11,6 +11,7 @@
 
 	let isMenuOpen = $state(false);
 	let headerElement = $state<HTMLElement | null>(null);
+	const mobileMenuId = 'mobile-navigation-menu';
 
 	// Use Svelte 5 composable hook from @ariefsn/svelte-use to close menu on outside clicks
 	useClickOutside(
@@ -102,6 +103,8 @@
 			<button
 				type="button"
 				aria-label={isMenuOpen ? 'Close Navigation Menu' : 'Open Navigation Menu'}
+				aria-expanded={isMenuOpen}
+				aria-controls={mobileMenuId}
 				class="text-foreground bg-muted/60 hover:bg-muted focus-visible:ring-primary border-border cursor-pointer rounded-xl border p-2 focus-visible:ring-2 focus-visible:outline-none"
 				onclick={() => (isMenuOpen = !isMenuOpen)}
 			>
@@ -128,7 +131,11 @@
 
 		<!-- Dropdown Panel -->
 		<div
+			id={mobileMenuId}
 			transition:fly={{ y: -15, duration: 250 }}
+			role="dialog"
+			aria-modal="true"
+			aria-label="Mobile navigation"
 			class="bg-card/95 border-border fixed top-[65px] right-0 left-0 z-50 space-y-5 border-b p-6 shadow-2xl backdrop-blur-2xl md:hidden"
 		>
 			<ul class="flex flex-col space-y-2">

@@ -39,6 +39,8 @@
 						<input
 							type="text"
 							id="footer-name"
+							name="name"
+							autocomplete="name"
 							required
 							placeholder="Jane Doe"
 							class="border-input bg-card text-foreground focus:ring-primary w-full rounded-xl border px-3.5 py-2.5 text-sm focus:ring-2 focus:outline-none"
@@ -51,6 +53,8 @@
 						<input
 							type="email"
 							id="footer-email"
+							name="email"
+							autocomplete="email"
 							required
 							placeholder="jane@example.com"
 							class="border-input bg-card text-foreground focus:ring-primary w-full rounded-xl border px-3.5 py-2.5 text-sm focus:ring-2 focus:outline-none"
@@ -64,6 +68,7 @@
 					>
 					<textarea
 						id="footer-details"
+						name="projectSummary"
 						rows={3}
 						required
 						placeholder="Briefly describe your product goals..."

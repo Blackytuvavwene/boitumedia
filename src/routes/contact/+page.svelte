@@ -155,6 +155,9 @@
 					{:else}
 						<form onsubmit={handleSubmit} class="space-y-6">
 							<h2 class="text-foreground mb-6 text-2xl font-bold">Send Me a Message</h2>
+							<p class="sr-only" id="contact-response-time">
+								Boitumelo typically replies as soon as possible after receiving your message.
+							</p>
 
 							<div class="grid gap-6 md:grid-cols-2">
 								<div class="space-y-2">
@@ -162,6 +165,8 @@
 									<input
 										type="text"
 										id="name"
+										name="name"
+										autocomplete="name"
 										required
 										bind:value={formData.name}
 										placeholder="Your Name"
@@ -176,6 +181,8 @@
 									<input
 										type="email"
 										id="email"
+										name="email"
+										autocomplete="email"
 										required
 										bind:value={formData.email}
 										placeholder="your.email@example.com"
@@ -190,6 +197,7 @@
 								>
 								<select
 									id="projectType"
+									name="projectType"
 									bind:value={formData.projectType}
 									class="border-input bg-background text-foreground focus:ring-primary w-full rounded-xl border px-4 py-3 text-sm focus:ring-2 focus:outline-none"
 								>
@@ -205,6 +213,7 @@
 								<label for="message" class="text-foreground text-sm font-semibold">Message</label>
 								<textarea
 									id="message"
+									name="message"
 									rows={5}
 									required
 									bind:value={formData.message}
@@ -218,6 +227,7 @@
 								size="lg"
 								class="flex w-full items-center justify-center space-x-2"
 								disabled={isSubmitting}
+								aria-describedby="contact-response-time"
 							>
 								<span>{isSubmitting ? 'Sending...' : 'Send Message'}</span>
 								<Send size={18} />

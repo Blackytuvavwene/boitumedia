@@ -48,7 +48,9 @@
 		<div class="mb-12 flex flex-wrap items-center justify-center gap-3">
 			{#each categories as cat}
 				<button
+					type="button"
 					onclick={() => (selectedCategory = cat.id)}
+					aria-pressed={selectedCategory === cat.id}
 					class={`rounded-full px-5 py-2.5 text-xs font-bold transition-all ${
 						selectedCategory === cat.id
 							? 'bg-primary text-primary-foreground scale-105 shadow-lg'
@@ -68,8 +70,11 @@
 					in:fly={{ y: 30, duration: 400 }}
 				>
 					<button
+						type="button"
 						onclick={() => openModal(project)}
 						class="focus:ring-primary flex h-full w-full flex-col justify-between rounded-3xl text-left focus:ring-2 focus:outline-none"
+						aria-haspopup="dialog"
+						aria-expanded={$open && selectedProject?.id === project.id}
 					>
 						<div>
 							<!-- Image Container with Floating Circle Arrow Button (Reference 1) -->
@@ -91,6 +96,8 @@
 									src={project.image}
 									alt={project.title}
 									class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+									loading="lazy"
+									decoding="async"
 								/>
 							</div>
 
@@ -153,12 +160,16 @@
 							src={selectedProject.image}
 							alt={`${selectedProject.title} Desktop View`}
 							class="border-border h-64 w-full rounded-2xl border object-cover {selectedProject.mobileImage ? 'md:col-span-2' : ''}"
+							loading="lazy"
+							decoding="async"
 						/>
 						{#if selectedProject.mobileImage}
 							<img
 								src={selectedProject.mobileImage}
 								alt={`${selectedProject.title} Mobile View`}
 								class="border-border h-64 w-full rounded-2xl border object-cover"
+								loading="lazy"
+								decoding="async"
 							/>
 						{/if}
 					</div>

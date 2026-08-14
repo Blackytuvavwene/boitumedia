@@ -67,7 +67,9 @@
 			<!-- Filter Pills -->
 			<div class="flex flex-wrap items-center justify-center gap-2">
 				<button
+					type="button"
 					onclick={() => (selectedCategory = 'all')}
+					aria-pressed={selectedCategory === 'all'}
 					class={`cursor-pointer rounded-full px-4 py-2 text-xs font-bold transition-all ${
 						selectedCategory === 'all'
 							? 'bg-primary text-primary-foreground scale-105 shadow-md'
@@ -77,7 +79,9 @@
 					All Work
 				</button>
 				<button
+					type="button"
 					onclick={() => (selectedCategory = 'flutter')}
+					aria-pressed={selectedCategory === 'flutter'}
 					class={`cursor-pointer rounded-full px-4 py-2 text-xs font-bold transition-all ${
 						selectedCategory === 'flutter'
 							? 'bg-primary text-primary-foreground scale-105 shadow-md'
@@ -87,7 +91,9 @@
 					Flutter Apps
 				</button>
 				<button
+					type="button"
 					onclick={() => (selectedCategory = 'svelte')}
+					aria-pressed={selectedCategory === 'svelte'}
 					class={`cursor-pointer rounded-full px-4 py-2 text-xs font-bold transition-all ${
 						selectedCategory === 'svelte'
 							? 'bg-primary text-primary-foreground scale-105 shadow-md'
@@ -97,7 +103,9 @@
 					Svelte Web
 				</button>
 				<button
+					type="button"
 					onclick={() => (selectedCategory = 'python')}
+					aria-pressed={selectedCategory === 'python'}
 					class={`cursor-pointer rounded-full px-4 py-2 text-xs font-bold transition-all ${
 						selectedCategory === 'python'
 							? 'bg-primary text-primary-foreground scale-105 shadow-md'
@@ -157,6 +165,7 @@
 									alt={p.title}
 									class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
 									loading="lazy"
+									decoding="async"
 								/>
 							</div>
 

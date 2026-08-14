@@ -53,6 +53,7 @@
 	function goToSlide(index: number) {
 		currentIndex = index;
 	}
+
 </script>
 
 <div
@@ -76,6 +77,8 @@
 					<img
 						src={item.src}
 						alt={item.alt || `Slide ${i + 1}`}
+						loading={i === currentIndex ? 'eager' : 'lazy'}
+						decoding="async"
 						class="h-full w-full object-cover"
 					/>
 				{:else}
