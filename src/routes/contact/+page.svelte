@@ -3,6 +3,7 @@
 	import Button from '$lib/components/global/ui/Button.svelte';
 	import HeroComponent from '$lib/components/global/ui/HeroComponent.svelte';
 	import FaqAccordion from '$lib/components/contact/FaqAccordion.svelte';
+	import { SITE_URL } from '$lib/constants/site';
 	import { Mail, Phone, MapPin, Clock, Send, CheckCircle2 } from '@lucide/svelte';
 	import { fly } from 'svelte/transition';
 
@@ -31,14 +32,14 @@
 		name: 'Contact Boitumelo Tubabwene',
 		description:
 			'Get in touch with Boitumelo Tubabwene for Flutter mobile apps, Svelte web development, Python backends, or SQL projects.',
-		url: 'https://boitumedia.xyz/contact'
+		url: `${SITE_URL}/contact`
 	};
 </script>
 
 <SEO
 	title="Contact Boitumelo Tubabwene | Software Developer Botswana"
 	description="Get in touch with Boitumelo Tubabwene in Botswana for Flutter mobile app development, Svelte web solutions, Python scripts, or IT support."
-	canonicalUrl="https://boitumedia.xyz/contact"
+	canonicalUrl={`${SITE_URL}/contact`}
 	jsonLd={contactJsonLd}
 />
 
@@ -74,10 +75,10 @@
 									Email
 								</div>
 								<a
-									href="mailto:hello@boitumedia.xyz"
+									href="mailto:hello@boitumedia.com"
 									class="text-foreground hover:text-primary font-medium transition-colors"
 								>
-									hello@boitumedia.xyz
+									hello@boitumedia.com
 								</a>
 							</div>
 						</div>

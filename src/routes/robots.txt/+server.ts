@@ -1,10 +1,12 @@
 import type { RequestHandler } from './$types';
+import { SITE_URL } from '$lib/constants/site';
 
 export const GET: RequestHandler = async () => {
 	const robotsTxt = `User-agent: *
 Allow: /
 
-Sitemap: https://boitumedia.xyz/sitemap.xml
+Host: boitumedia.com
+Sitemap: ${SITE_URL}/sitemap.xml
 `;
 
 	return new Response(robotsTxt, {

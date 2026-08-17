@@ -3,6 +3,7 @@
 	import ProjectsHero from '$lib/components/pages/projects/ProjectsHero.svelte';
 	import ProjectsStats from '$lib/components/pages/projects/ProjectsStats.svelte';
 	import SEO from '$lib/components/global/SEO.svelte';
+	import { SITE_URL } from '$lib/constants/site';
 
 	const projectsJsonLd = {
 		'@context': 'https://schema.org',
@@ -10,14 +11,14 @@
 		name: 'Projects Portfolio | Boitumelo Tubabwene',
 		description:
 			'Explore mobile apps, web solutions, and backend projects engineered by Boitumelo Tubabwene in Botswana.',
-		url: 'https://boitumedia.xyz/projects'
+		url: `${SITE_URL}/projects`
 	};
 </script>
 
 <SEO
 	title="Projects & Portfolio | Boitumelo Tubabwene"
 	description="Browse projects developed by Boitumelo Tubabwene using Flutter, Python, Svelte, and SQL."
-	canonicalUrl="https://boitumedia.xyz/projects"
+	canonicalUrl={`${SITE_URL}/projects`}
 	jsonLd={projectsJsonLd}
 />
 

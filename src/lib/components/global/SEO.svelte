@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from '$lib/constants/site';
+
 	interface Props {
 		title?: string;
 		description?: string;
@@ -14,8 +16,8 @@
 		title = 'Boitumedia | Web & Mobile Development Services',
 		description = 'Boitumedia creates innovative digital solutions, transforming businesses through cutting-edge web development, mobile applications, and AI integrations.',
 		keywords = 'web development, mobile development, SvelteKit, software engineering, digital agency, UI/UX design',
-		canonicalUrl = 'https://boitumedia.xyz',
-		ogImage = 'https://boitumedia.xyz/og-image.png',
+		canonicalUrl = SITE_URL,
+		ogImage = DEFAULT_OG_IMAGE,
 		ogType = 'website',
 		noindex = false,
 		jsonLd
@@ -30,9 +32,9 @@
 					{
 						'@context': 'https://schema.org',
 						'@type': 'Organization',
-						name: 'Boitumedia',
-						url: 'https://boitumedia.xyz',
-						logo: 'https://boitumedia.xyz/favicon.png',
+						name: SITE_NAME,
+						url: SITE_URL,
+						logo: `${SITE_URL}/favicon.png`,
 						description: description,
 						sameAs: [
 							'https://github.com/Blackytuvavwene',
@@ -43,8 +45,8 @@
 					{
 						'@context': 'https://schema.org',
 						'@type': 'WebSite',
-						name: 'Boitumedia',
-						url: 'https://boitumedia.xyz'
+						name: SITE_NAME,
+						url: SITE_URL
 					}
 				]
 	);
@@ -65,7 +67,7 @@
 	<meta property="og:description" content={description} />
 	<meta property="og:image" content={ogImage} />
 	<meta property="og:image:alt" content={title} />
-	<meta property="og:site_name" content="Boitumedia" />
+	<meta property="og:site_name" content={SITE_NAME} />
 	<meta property="og:locale" content="en_US" />
 
 	<!-- Twitter -->

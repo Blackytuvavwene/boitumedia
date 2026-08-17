@@ -2,6 +2,7 @@
 	import { page } from '$app/state';
 	import SEO from '$lib/components/global/SEO.svelte';
 	import Button from '$lib/components/global/ui/Button.svelte';
+	import { SITE_URL } from '$lib/constants/site';
 	import { ArrowLeft, ExternalLink, CheckCircle2, Code2 } from '@lucide/svelte';
 	import { SiGithub } from '@icons-pack/svelte-simple-icons';
 	import { fly } from 'svelte/transition';
@@ -18,14 +19,14 @@
 		description: project.description,
 		applicationCategory: project.category === 'mobile' ? 'MobileApplication' : 'WebApplication',
 		operatingSystem: 'All',
-		url: `https://boitumedia.xyz/projects/${project.id}`
+		url: `${SITE_URL}/projects/${project.id}`
 	});
 </script>
 
 <SEO
 	title={`${project.title} | Case Study by Boitumedia`}
 	description={project.description}
-	canonicalUrl={`https://boitumedia.xyz/projects/${project.id}`}
+	canonicalUrl={`${SITE_URL}/projects/${project.id}`}
 	jsonLd={projectJsonLd}
 />
 

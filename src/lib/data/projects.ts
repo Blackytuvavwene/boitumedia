@@ -118,7 +118,7 @@ export const projects: Project[] = [
 			'SEO optimization'
 		],
 		technologies: ['Svelte 5', 'SvelteKit', 'TypeScript', 'HTML5 Canvas', 'Tailwind CSS'],
-		liveLink: 'https://boitumedia.xyz',
+		liveLink: 'https://boitumedia.com',
 		githubLink: 'https://github.com/Blackytuvavwene/boitumedia'
 	},
 	{

@@ -3,6 +3,7 @@
 	import Navbar from '$lib/components/navbar/Navbar.svelte';
 	import Footer from '$lib/components/footer/Footer.svelte';
 	import SEO from '$lib/components/global/SEO.svelte';
+	import { DEFAULT_OG_IMAGE, SITE_URL } from '$lib/constants/site';
 	import { page } from '$app/state';
 	import { themeState } from '$lib/stores/theme.svelte';
 	import type { Snippet } from 'svelte';
@@ -13,8 +14,8 @@
 			'Boitumedia builds fast, accessible web and mobile products with SvelteKit, Flutter, Python, and SQL.',
 		keywords:
 			'Boitumedia, web development, mobile development, SvelteKit, Flutter, Python, SQL, accessibility, SEO',
-		canonicalUrl: 'https://boitumedia.xyz',
-		ogImage: 'https://boitumedia.xyz/og-image.png',
+		canonicalUrl: SITE_URL,
+		ogImage: DEFAULT_OG_IMAGE,
 		ogType: 'website' as const
 	};
 

@@ -181,7 +181,7 @@
 		{ name: 'GitHub', href: 'https://github.com/Blackytuvavwene', icon: SiGithub },
 		{ name: 'X', href: 'https://x.com/Blackytubabwene', icon: SiX },
 		{ name: 'Facebook', href: 'https://www.facebook.com/boitumelo.blacky', icon: SiFacebook },
-		{ name: 'Email', href: 'mailto:hello@boitumedia.xyz', icon: Mail },
+		{ name: 'Email', href: 'mailto:hello@boitumedia.com', icon: Mail },
 		{ name: 'WhatsApp', href: 'https://wa.me/26777465201', icon: SiWhatsapp }
 	];
 </script>

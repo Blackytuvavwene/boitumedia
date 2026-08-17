@@ -2,6 +2,7 @@
 	import SEO from '$lib/components/global/SEO.svelte';
 	import Button from '$lib/components/global/ui/Button.svelte';
 	import HeroComponent from '$lib/components/global/ui/HeroComponent.svelte';
+	import { SITE_URL } from '$lib/constants/site';
 	import {
 		Code,
 		Smartphone,
@@ -60,14 +61,14 @@
 			addressCountry: 'BW'
 		},
 		knowsAbout: ['Flutter', 'Python', 'Svelte', 'SvelteKit', 'SQL', 'IT Support'],
-		url: 'https://boitumedia.xyz/about'
+		url: `${SITE_URL}/about`
 	};
 </script>
 
 <SEO
 	title="About Boitumelo Tubabwene | Developer in Botswana"
 	description="Learn about Boitumelo Tubabwene, a self-taught developer in Botswana specializing in Flutter, Python, Svelte, and SQL, currently pursuing the Google IT Support Professional Certificate."
-	canonicalUrl="https://boitumedia.xyz/about"
+	canonicalUrl={`${SITE_URL}/about`}
 	jsonLd={aboutJsonLd}
 />
 
