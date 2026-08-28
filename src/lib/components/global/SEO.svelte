@@ -56,7 +56,10 @@
 	<title>{title}</title>
 	<meta name="description" content={description} />
 	<meta name="keywords" content={keywords} />
-	<meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large'} />
+	<meta
+		name="robots"
+		content={noindex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large'}
+	/>
 	<meta name="author" content="Boitumelo Tubabwene" />
 	<link rel="canonical" href={canonicalUrl} />
 

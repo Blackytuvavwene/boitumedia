@@ -18,7 +18,7 @@
 	}: Props = $props();
 
 	let currentIndex = $state(0);
-	let intervalId: number | undefined;
+	let intervalId: ReturnType<typeof setInterval> | undefined;
 
 	onMount(() => {
 		if (autoplay && items.length > 1) {
@@ -53,7 +53,6 @@
 	function goToSlide(index: number) {
 		currentIndex = index;
 	}
-
 </script>
 
 <div

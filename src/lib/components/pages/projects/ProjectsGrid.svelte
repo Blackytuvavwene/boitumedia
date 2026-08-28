@@ -159,7 +159,9 @@
 						<img
 							src={selectedProject.image}
 							alt={`${selectedProject.title} Desktop View`}
-							class="border-border h-64 w-full rounded-2xl border object-cover {selectedProject.mobileImage ? 'md:col-span-2' : ''}"
+							class="border-border h-64 w-full rounded-2xl border object-cover {selectedProject.mobileImage
+								? 'md:col-span-2'
+								: ''}"
 							loading="lazy"
 							decoding="async"
 						/>

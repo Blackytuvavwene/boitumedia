@@ -85,6 +85,41 @@ The platform showcases real-world mobile applications, web platforms, and backen
 
 ---
 
+## 🚢 Deployment on Dokploy (dokploy.com)
+
+The application is fully configured for deployment on [**Dokploy**](https://dokploy.com)—an open-source, self-hosted PaaS powered by Docker and Traefik.
+
+### Deployment Configuration:
+
+- **Build Type**: **Nixpacks** (or **Dockerfile**)
+  - Fully configured with `nixpacks.toml` using Node.js 24 and npm.
+  - Multi-stage `Dockerfile` is also provided as an alternative build method.
+- **Start Command**: `npm run start` / `node build`
+- **Port**: `3000`
+- **Health Check Path**: `/health` (Configured for Traefik health checks and zero-downtime rolling deploys)
+- **Automatic SSL**: Managed automatically via Dokploy's Let's Encrypt Traefik integration.
+
+### Environment Variables:
+
+Set the following environment variables in your **Dokploy Application Dashboard**:
+
+| Variable   | Default Value            | Description                                      |
+| :--------- | :----------------------- | :----------------------------------------------- |
+| `NODE_ENV` | `production`             | Node environment                                 |
+| `PORT`     | `3000`                   | Port for the application server                  |
+| `HOST`     | `0.0.0.0`                | Network binding address                          |
+| `ORIGIN`   | `https://boitumedia.com` | Canonical site origin for SvelteKit adapter-node |
+
+### How to Deploy on Dokploy:
+
+1. In Dokploy, create a new **Application** and connect your GitHub repository (`boitumedia`).
+2. Select **Nixpacks** (default) or **Dockerfile** as your **Build Type**.
+3. Under **Domains**, add your domain (e.g., `boitumedia.com` and `www.boitumedia.com`) with container port `3000` and HTTPS enabled.
+4. Under **Health Checks**, set the health path to `/health`.
+5. Click **Deploy**. Dokploy will build the application, verify `/health`, and route traffic seamlessly via Traefik.
+
+---
+
 ## 📄 License
 
 Created by **Boitumelo Tubabwene**. All rights reserved.

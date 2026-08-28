@@ -4,6 +4,7 @@ import { SITE_URL } from '$lib/constants/site';
 export const GET: RequestHandler = async () => {
 	const robotsTxt = `User-agent: *
 Allow: /
+Disallow: /health
 
 Host: boitumedia.com
 Sitemap: ${SITE_URL}/sitemap.xml

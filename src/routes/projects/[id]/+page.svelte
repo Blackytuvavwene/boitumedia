@@ -61,7 +61,11 @@
 
 			<!-- Project Hero Image(s) -->
 			<div class="grid gap-4 {project.mobileImage ? 'md:grid-cols-3' : 'grid-cols-1'}">
-				<div class="border-border bg-card relative overflow-hidden rounded-2xl border shadow-lg {project.mobileImage ? 'md:col-span-2' : ''}">
+				<div
+					class="border-border bg-card relative overflow-hidden rounded-2xl border shadow-lg {project.mobileImage
+						? 'md:col-span-2'
+						: ''}"
+				>
 					<img
 						src={project.image}
 						alt={`${project.title} Desktop View`}
