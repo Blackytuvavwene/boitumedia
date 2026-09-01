@@ -5,6 +5,7 @@ export const GET: RequestHandler = async () => {
 	const robotsTxt = `User-agent: *
 Allow: /
 Disallow: /health
+Disallow: /api/
 
 Host: boitumedia.com
 Sitemap: ${SITE_URL}/sitemap.xml

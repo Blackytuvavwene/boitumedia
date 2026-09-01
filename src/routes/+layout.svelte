@@ -2,22 +2,8 @@
 	import '../app.css';
 	import Navbar from '$lib/components/navbar/Navbar.svelte';
 	import Footer from '$lib/components/footer/Footer.svelte';
-	import SEO from '$lib/components/global/SEO.svelte';
-	import { DEFAULT_OG_IMAGE, SITE_URL } from '$lib/constants/site';
-	import { page } from '$app/state';
 	import { themeState } from '$lib/stores/theme.svelte';
 	import type { Snippet } from 'svelte';
-
-	const defaultSeo = {
-		title: 'Boitumedia | Web & Mobile Development Services',
-		description:
-			'Boitumedia builds fast, accessible web and mobile products with SvelteKit, Flutter, Python, and SQL.',
-		keywords:
-			'Boitumedia, web development, mobile development, SvelteKit, Flutter, Python, SQL, accessibility, SEO',
-		canonicalUrl: SITE_URL,
-		ogImage: DEFAULT_OG_IMAGE,
-		ogType: 'website' as const
-	};
 
 	interface Props {
 		children?: Snippet;
@@ -32,13 +18,6 @@
 </script>
 
 <svelte:head>
-	<link
-		rel="preload"
-		as="image"
-		href="/developer_portrait.jpg"
-		fetchpriority="high"
-		type="image/jpeg"
-	/>
 	<script>
 		(function () {
 			try {
@@ -56,15 +35,6 @@
 	</script>
 </svelte:head>
 
-<SEO
-	title={page.data.title || defaultSeo.title}
-	description={page.data.description || defaultSeo.description}
-	keywords={page.data.keywords || defaultSeo.keywords}
-	canonicalUrl={page.data.canonicalUrl || page.url.href}
-	ogImage={page.data.ogImage || defaultSeo.ogImage}
-	ogType={page.data.ogType || defaultSeo.ogType}
-	noindex={page.data.noindex}
-/>
 
 <div
 	class="bg-background text-foreground selection:bg-primary/20 selection:text-primary flex min-h-screen flex-col"

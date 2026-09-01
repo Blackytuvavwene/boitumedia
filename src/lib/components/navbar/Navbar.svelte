@@ -51,13 +51,22 @@
 		<a
 			href="/"
 			onclick={closeMenu}
-			aria-label="Boitumelo Tubabwene Home"
-			class="group flex items-center space-x-1"
+			aria-label="BoituMedia Home"
+			class="group flex items-center space-x-2.5"
 		>
-			<span class="text-foreground group-hover:text-primary text-2xl font-black transition-colors">
-				Boitu
-			</span>
-			<span class="text-primary text-2xl font-black"> Media </span>
+			<img
+				src="/logo-icon.png"
+				alt="BoituMedia Logo Icon"
+				width="34"
+				height="34"
+				class="h-8.5 w-8.5 object-contain transition-transform duration-200 group-hover:scale-105"
+			/>
+			<div class="flex items-center tracking-tight">
+				<span class="text-foreground group-hover:text-primary text-2xl font-black transition-colors">
+					Boitu
+				</span>
+				<span class="text-primary text-2xl font-black">Media</span>
+			</div>
 		</a>
 
 		<!-- Desktop Links -->

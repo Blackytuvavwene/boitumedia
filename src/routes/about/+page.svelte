@@ -51,24 +51,38 @@
 			'Mastering IT infrastructure, networking protocols, system administration, OS management, and cybersecurity fundamentals.'
 	};
 
-	const aboutJsonLd = {
-		'@context': 'https://schema.org',
-		'@type': 'Person',
-		name: 'Boitumelo Tubabwene',
-		jobTitle: 'Self-Taught Software Developer',
-		address: {
-			'@type': 'PostalAddress',
-			addressCountry: 'BW'
-		},
-		knowsAbout: ['Flutter', 'Python', 'Svelte', 'SvelteKit', 'SQL', 'IT Support'],
-		url: `${SITE_URL}/about`
-	};
+	const aboutJsonLd = [
+		{
+			'@context': 'https://schema.org',
+			'@type': 'AboutPage',
+			name: 'About Boitumelo Tubabwene',
+			description:
+				'Learn about Boitumelo Tubabwene, a software developer in Botswana building Flutter mobile apps, SvelteKit web solutions, Python backends, and databases.',
+			url: `${SITE_URL}/about`,
+			mainEntity: {
+				'@type': 'Person',
+				name: 'Boitumelo Tubabwene',
+				jobTitle: 'Software Developer',
+				address: {
+					'@type': 'PostalAddress',
+					addressLocality: 'Gaborone',
+					addressCountry: 'BW'
+				},
+				knowsAbout: ['Flutter', 'Dart', 'Python', 'Svelte', 'SvelteKit', 'SQL', 'IT Support'],
+				url: `${SITE_URL}/about`
+			}
+		}
+	];
 </script>
 
 <SEO
-	title="About Boitumelo Tubabwene | Developer in Botswana"
-	description="Learn about Boitumelo Tubabwene, a self-taught developer in Botswana specializing in Flutter, Python, Svelte, and SQL, currently pursuing the Google IT Support Professional Certificate."
+	title="About Boitumelo Tubabwene | Software Developer"
+	description="Learn about Boitumelo Tubabwene, a software developer in Botswana building Flutter mobile apps, SvelteKit web solutions, Python backends, and databases."
 	canonicalUrl={`${SITE_URL}/about`}
+	breadcrumbs={[
+		{ name: 'Home', item: '/' },
+		{ name: 'About', item: '/about' }
+	]}
 	jsonLd={aboutJsonLd}
 />
 

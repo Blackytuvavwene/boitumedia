@@ -1,5 +1,10 @@
 <script lang="ts">
-	import { DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from '$lib/constants/site';
+	import { DEFAULT_LOGO, DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from '$lib/constants/site';
+
+	interface BreadcrumbItem {
+		name: string;
+		item: string;
+	}
 
 	interface Props {
 		title?: string;
@@ -9,47 +14,87 @@
 		ogImage?: string;
 		ogType?: string;
 		noindex?: boolean;
+		breadcrumbs?: BreadcrumbItem[];
 		jsonLd?: Record<string, any> | Record<string, any>[];
 	}
 
 	let {
-		title = 'Boitumedia | Web & Mobile Development Services',
-		description = 'Boitumedia creates innovative digital solutions, transforming businesses through cutting-edge web development, mobile applications, and AI integrations.',
-		keywords = 'web development, mobile development, SvelteKit, software engineering, digital agency, UI/UX design',
+		title = 'Boitumelo Tubabwene | Software Developer Portfolio',
+		description = 'Portfolio of Boitumelo Tubabwene, a software developer in Botswana specializing in Flutter mobile apps, Svelte web solutions, Python APIs, and SQL.',
+		keywords = 'Boitumelo Tubabwene, BoituMedia, software developer Botswana, Flutter developer, SvelteKit developer, Python APIs, SQL databases, web development, mobile development',
 		canonicalUrl = SITE_URL,
 		ogImage = DEFAULT_OG_IMAGE,
 		ogType = 'website',
 		noindex = false,
+		breadcrumbs = [],
 		jsonLd
 	}: Props = $props();
 
-	const activeJsonLd = $derived(
-		jsonLd
-			? Array.isArray(jsonLd)
-				? jsonLd
-				: [jsonLd]
-			: [
-					{
-						'@context': 'https://schema.org',
-						'@type': 'Organization',
-						name: SITE_NAME,
-						url: SITE_URL,
-						logo: `${SITE_URL}/favicon.png`,
-						description: description,
-						sameAs: [
-							'https://github.com/Blackytuvavwene',
-							'https://x.com/Blackytubabwene',
-							'https://www.facebook.com/boitumelo.blacky'
-						]
-					},
-					{
-						'@context': 'https://schema.org',
-						'@type': 'WebSite',
-						name: SITE_NAME,
-						url: SITE_URL
-					}
-				]
+	// Ensure canonicalUrl is normalized (no trailing slash for subpaths, always absolute)
+	const normalizedCanonical = $derived(
+		canonicalUrl.startsWith('http')
+			? canonicalUrl.endsWith('/') && canonicalUrl !== `${SITE_URL}/` && canonicalUrl !== SITE_URL
+				? canonicalUrl.slice(0, -1)
+				: canonicalUrl
+			: `${SITE_URL}${canonicalUrl.startsWith('/') ? '' : '/'}${canonicalUrl}`
 	);
+
+	const breadcrumbSchema = $derived(
+		breadcrumbs.length > 0
+			? {
+					'@context': 'https://schema.org',
+					'@type': 'BreadcrumbList',
+					itemListElement: breadcrumbs.map((crumb, idx) => ({
+						'@type': 'ListItem',
+						position: idx + 1,
+						name: crumb.name,
+						item: crumb.item.startsWith('http') ? crumb.item : `${SITE_URL}${crumb.item}`
+					}))
+				}
+			: null
+	);
+
+	const activeJsonLd = $derived.by(() => {
+		const schemas: Record<string, any>[] = [];
+
+		if (jsonLd) {
+			if (Array.isArray(jsonLd)) {
+				schemas.push(...jsonLd);
+			} else {
+				schemas.push(jsonLd);
+			}
+		} else {
+			schemas.push(
+				{
+					'@context': 'https://schema.org',
+					'@type': 'Organization',
+					name: SITE_NAME,
+					url: SITE_URL,
+					logo: DEFAULT_LOGO,
+					image: DEFAULT_OG_IMAGE,
+					description: description,
+					sameAs: [
+						'https://github.com/Blackytuvavwene',
+						'https://x.com/Blackytubabwene',
+						'https://www.facebook.com/boitumelo.blacky'
+					]
+				},
+				{
+					'@context': 'https://schema.org',
+					'@type': 'WebSite',
+					name: SITE_NAME,
+					alternateName: ['BoituMedia Dev', 'Boitumelo Tubabwene'],
+					url: SITE_URL
+				}
+			);
+		}
+
+		if (breadcrumbSchema) {
+			schemas.push(breadcrumbSchema);
+		}
+
+		return schemas;
+	});
 </script>
 
 <svelte:head>
@@ -61,11 +106,11 @@
 		content={noindex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large'}
 	/>
 	<meta name="author" content="Boitumelo Tubabwene" />
-	<link rel="canonical" href={canonicalUrl} />
+	<link rel="canonical" href={normalizedCanonical} />
 
 	<!-- Open Graph / Facebook -->
 	<meta property="og:type" content={ogType} />
-	<meta property="og:url" content={canonicalUrl} />
+	<meta property="og:url" content={normalizedCanonical} />
 	<meta property="og:title" content={title} />
 	<meta property="og:description" content={description} />
 	<meta property="og:image" content={ogImage} />
@@ -75,7 +120,9 @@
 
 	<!-- Twitter -->
 	<meta name="twitter:card" content="summary_large_image" />
-	<meta name="twitter:url" content={canonicalUrl} />
+	<meta name="twitter:site" content="@Blackytubabwene" />
+	<meta name="twitter:creator" content="@Blackytubabwene" />
+	<meta name="twitter:url" content={normalizedCanonical} />
 	<meta name="twitter:title" content={title} />
 	<meta name="twitter:description" content={description} />
 	<meta name="twitter:image" content={ogImage} />
@@ -86,3 +133,4 @@
 		{@html `<script type="application/ld+json">${JSON.stringify(schema)}</script>`}
 	{/each}
 </svelte:head>
+

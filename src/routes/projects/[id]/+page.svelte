@@ -19,14 +19,21 @@
 		description: project.description,
 		applicationCategory: project.category === 'mobile' ? 'MobileApplication' : 'WebApplication',
 		operatingSystem: 'All',
+		image: project.image.startsWith('http') ? project.image : `${SITE_URL}${project.image}`,
 		url: `${SITE_URL}/projects/${project.id}`
 	});
 </script>
 
 <SEO
-	title={`${project.title} | Case Study by Boitumedia`}
+	title={`${project.title} Case Study | BoituMedia`}
 	description={project.description}
 	canonicalUrl={`${SITE_URL}/projects/${project.id}`}
+	ogImage={project.image.startsWith('http') ? project.image : `${SITE_URL}${project.image}`}
+	breadcrumbs={[
+		{ name: 'Home', item: '/' },
+		{ name: 'Projects', item: '/projects' },
+		{ name: project.title, item: `/projects/${project.id}` }
+	]}
 	jsonLd={projectJsonLd}
 />
 

@@ -1,14 +1,14 @@
 {
-	"name": "Boitumedia - Web & Mobile Development",
-	"short_name": "Boitumedia",
-	"description": "Innovative digital solutions transforming businesses through web and mobile engineering.",
+	"name": "BoituMedia - Software & Web Development",
+	"short_name": "BoituMedia",
+	"description": "Innovative software and web solutions by Boitumelo Tubabwene in Botswana.",
 	"start_url": "/",
 	"display": "standalone",
 	"background_color": "#121423",
 	"theme_color": "#16d0cc",
 	"icons": [
 		{
-			"src": "/favicon.png",
+			"src": "/icon-192.png",
 			"sizes": "192x192",
 			"type": "image/png"
 		},
@@ -19,3 +19,4 @@
 		}
 	]
 }
+

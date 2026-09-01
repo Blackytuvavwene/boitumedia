@@ -26,20 +26,26 @@
 		}, 800);
 	}
 
-	const contactJsonLd = {
-		'@context': 'https://schema.org',
-		'@type': 'ContactPage',
-		name: 'Contact Boitumelo Tubabwene',
-		description:
-			'Get in touch with Boitumelo Tubabwene for Flutter mobile apps, Svelte web development, Python backends, or SQL projects.',
-		url: `${SITE_URL}/contact`
-	};
+	const contactJsonLd = [
+		{
+			'@context': 'https://schema.org',
+			'@type': 'ContactPage',
+			name: 'Contact Boitumelo Tubabwene',
+			description:
+				'Get in touch with Boitumelo Tubabwene in Botswana for Flutter mobile apps, SvelteKit web development, Python APIs, and database engineering.',
+			url: `${SITE_URL}/contact`
+		}
+	];
 </script>
 
 <SEO
-	title="Contact Boitumelo Tubabwene | Software Developer Botswana"
-	description="Get in touch with Boitumelo Tubabwene in Botswana for Flutter mobile app development, Svelte web solutions, Python scripts, or IT support."
+	title="Contact Boitumelo Tubabwene | Software Developer"
+	description="Get in touch with Boitumelo Tubabwene in Botswana for Flutter mobile apps, SvelteKit web development, Python APIs, and database engineering."
 	canonicalUrl={`${SITE_URL}/contact`}
+	breadcrumbs={[
+		{ name: 'Home', item: '/' },
+		{ name: 'Contact', item: '/contact' }
+	]}
 	jsonLd={contactJsonLd}
 />
 

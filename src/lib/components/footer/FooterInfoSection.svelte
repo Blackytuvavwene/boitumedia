@@ -44,12 +44,20 @@
 <section class="container mx-auto px-6 py-12">
 	<div class="grid grid-cols-1 gap-10 md:grid-cols-4">
 		<div class="col-span-1 space-y-4">
-			<a href="/" class="text-foreground inline-block text-2xl font-black tracking-tight">
-				Boitumelo <span class="text-primary">Tubabwene</span>
+			<a href="/" class="group inline-flex items-center space-x-2.5">
+				<img
+					src="/logo-icon.png"
+					alt="BoituMedia Logo"
+					width="28"
+					height="28"
+					class="h-7 w-7 object-contain transition-transform group-hover:scale-105"
+				/>
+				<span class="text-foreground text-xl font-black tracking-tight">
+					Boitu<span class="text-primary">Media</span>
+				</span>
 			</a>
 			<p class="text-muted-foreground text-sm leading-relaxed">
-				Self-taught developer based in Botswana. Crafting mobile & web solutions using Flutter,
-				Python, Svelte, and SQL.
+				Software & web development by Boitumelo Tubabwene in Botswana. Crafting mobile apps and web platforms with Flutter, SvelteKit, Python, and SQL.
 			</p>
 			<div class="flex space-x-3 pt-2">
 				{#each socialLinks as link (link.name)}
